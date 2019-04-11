@@ -1,0 +1,700 @@
+{
+  "contractName": "chain_maker",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/arash/Desktop/Hackathon/odessey/v0.1/contracts/chain_maker.sol\":\"chain_maker\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/arash/Desktop/Hackathon/odessey/v0.1/contracts/chain_maker.sol\":{\"keccak256\":\"0x669bc31e0e08b0d45d317fc9291f4155a44973596cda5aded78b7eb5a5486c9f\",\"urls\":[\"bzzr://ca93926ddb169409373129dc150fa53e9479c97b3df493859978e3eab7b066dc\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a7230582004fa8e821f15efaa0b3bc6c96fd4d1e181a89932b22e7a559adc12183bb1671d0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a7230582004fa8e821f15efaa0b3bc6c96fd4d1e181a89932b22e7a559adc12183bb1671d0029",
+  "sourceMap": "34:362:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;34:362:1;;;;;;;",
+  "deployedSourceMap": "34:362:1:-;;;;;",
+  "source": "pragma solidity >=0.4.21 <0.7.0;\n\ncontract chain_maker {\n\n  struct Good {\n    uint id;\n    string name;\n    string ipfs_image;\n    string ipfs_detials;\n  }\n\n  struct Message {\n    address from;\n    address body;\n  }\n\n  struct Node {\n    address addr;\n    Good[] offers;\n    Message[] message_box;\n\n  }\n\n\n/*\n  function register(Good[] memory good) public{\n    offers[msg.sender] = good;\n  }\n*/\n\n\n}\n",
+  "sourcePath": "/home/arash/Desktop/Hackathon/odessey/v0.1/contracts/chain_maker.sol",
+  "ast": {
+    "absolutePath": "/home/arash/Desktop/Hackathon/odessey/v0.1/contracts/chain_maker.sol",
+    "exportedSymbols": {
+      "chain_maker": [
+        82
+      ]
+    },
+    "id": 83,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 82,
+        "linearizedBaseContracts": [
+          82
+        ],
+        "name": "chain_maker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "chain_maker.Good",
+            "id": 67,
+            "members": [
+              {
+                "constant": false,
+                "id": 60,
+                "name": "id",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "78:7:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 59,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "78:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 62,
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "91:11:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 61,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "91:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 64,
+                "name": "ipfs_image",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "108:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 63,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "108:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 66,
+                "name": "ipfs_detials",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "131:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 65,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "131:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Good",
+            "nodeType": "StructDefinition",
+            "scope": 82,
+            "src": "60:95:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "chain_maker.Message",
+            "id": 72,
+            "members": [
+              {
+                "constant": false,
+                "id": 69,
+                "name": "from",
+                "nodeType": "VariableDeclaration",
+                "scope": 72,
+                "src": "180:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 68,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "180:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 71,
+                "name": "body",
+                "nodeType": "VariableDeclaration",
+                "scope": 72,
+                "src": "198:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 70,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "198:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Message",
+            "nodeType": "StructDefinition",
+            "scope": 82,
+            "src": "159:56:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "chain_maker.Node",
+            "id": 81,
+            "members": [
+              {
+                "constant": false,
+                "id": 74,
+                "name": "addr",
+                "nodeType": "VariableDeclaration",
+                "scope": 81,
+                "src": "237:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 73,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "237:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 77,
+                "name": "offers",
+                "nodeType": "VariableDeclaration",
+                "scope": 81,
+                "src": "255:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Good_$67_storage_$dyn_storage_ptr",
+                  "typeString": "struct chain_maker.Good[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 75,
+                    "name": "Good",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 67,
+                    "src": "255:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Good_$67_storage_ptr",
+                      "typeString": "struct chain_maker.Good"
+                    }
+                  },
+                  "id": 76,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "255:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Good_$67_storage_$dyn_storage_ptr",
+                    "typeString": "struct chain_maker.Good[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 80,
+                "name": "message_box",
+                "nodeType": "VariableDeclaration",
+                "scope": 81,
+                "src": "274:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Message_$72_storage_$dyn_storage_ptr",
+                  "typeString": "struct chain_maker.Message[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 78,
+                    "name": "Message",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 72,
+                    "src": "274:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Message_$72_storage_ptr",
+                      "typeString": "struct chain_maker.Message"
+                    }
+                  },
+                  "id": 79,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "274:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Message_$72_storage_$dyn_storage_ptr",
+                    "typeString": "struct chain_maker.Message[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Node",
+            "nodeType": "StructDefinition",
+            "scope": 82,
+            "src": "219:82:1",
+            "visibility": "public"
+          }
+        ],
+        "scope": 83,
+        "src": "34:362:1"
+      }
+    ],
+    "src": "0:397:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/arash/Desktop/Hackathon/odessey/v0.1/contracts/chain_maker.sol",
+    "exportedSymbols": {
+      "chain_maker": [
+        82
+      ]
+    },
+    "id": 83,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 82,
+        "linearizedBaseContracts": [
+          82
+        ],
+        "name": "chain_maker",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "chain_maker.Good",
+            "id": 67,
+            "members": [
+              {
+                "constant": false,
+                "id": 60,
+                "name": "id",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "78:7:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 59,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "78:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 62,
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "91:11:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 61,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "91:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 64,
+                "name": "ipfs_image",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "108:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 63,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "108:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 66,
+                "name": "ipfs_detials",
+                "nodeType": "VariableDeclaration",
+                "scope": 67,
+                "src": "131:19:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 65,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "131:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Good",
+            "nodeType": "StructDefinition",
+            "scope": 82,
+            "src": "60:95:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "chain_maker.Message",
+            "id": 72,
+            "members": [
+              {
+                "constant": false,
+                "id": 69,
+                "name": "from",
+                "nodeType": "VariableDeclaration",
+                "scope": 72,
+                "src": "180:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 68,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "180:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 71,
+                "name": "body",
+                "nodeType": "VariableDeclaration",
+                "scope": 72,
+                "src": "198:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 70,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "198:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Message",
+            "nodeType": "StructDefinition",
+            "scope": 82,
+            "src": "159:56:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "chain_maker.Node",
+            "id": 81,
+            "members": [
+              {
+                "constant": false,
+                "id": 74,
+                "name": "addr",
+                "nodeType": "VariableDeclaration",
+                "scope": 81,
+                "src": "237:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 73,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "237:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 77,
+                "name": "offers",
+                "nodeType": "VariableDeclaration",
+                "scope": 81,
+                "src": "255:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Good_$67_storage_$dyn_storage_ptr",
+                  "typeString": "struct chain_maker.Good[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 75,
+                    "name": "Good",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 67,
+                    "src": "255:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Good_$67_storage_ptr",
+                      "typeString": "struct chain_maker.Good"
+                    }
+                  },
+                  "id": 76,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "255:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Good_$67_storage_$dyn_storage_ptr",
+                    "typeString": "struct chain_maker.Good[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 80,
+                "name": "message_box",
+                "nodeType": "VariableDeclaration",
+                "scope": 81,
+                "src": "274:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Message_$72_storage_$dyn_storage_ptr",
+                  "typeString": "struct chain_maker.Message[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 78,
+                    "name": "Message",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 72,
+                    "src": "274:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Message_$72_storage_ptr",
+                      "typeString": "struct chain_maker.Message"
+                    }
+                  },
+                  "id": 79,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "274:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Message_$72_storage_$dyn_storage_ptr",
+                    "typeString": "struct chain_maker.Message[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Node",
+            "nodeType": "StructDefinition",
+            "scope": 82,
+            "src": "219:82:1",
+            "visibility": "public"
+          }
+        ],
+        "scope": 83,
+        "src": "34:362:1"
+      }
+    ],
+    "src": "0:397:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-04-10T11:21:39.537Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

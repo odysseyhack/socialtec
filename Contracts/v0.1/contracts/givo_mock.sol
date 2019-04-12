@@ -35,4 +35,13 @@ contract givo {
   function get_offers() public view returns (Good[][] memory offers){
       return offers;
   }
+
+  function add_intrest(Good good) public returns (bool) {
+      return true;
+  }
+
+  function delete_intrest(Good good) public returns (bool) {
+      return true;
+  }
+
 }

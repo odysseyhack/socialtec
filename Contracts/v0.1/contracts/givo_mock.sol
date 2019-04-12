@@ -36,11 +36,11 @@ contract givo {
       return offers;
   }
 
-  function add_intrest(Good good) public returns (bool) {
+  function add_intrest(Good memory good) public returns (bool) {
       return true;
   }
 
-  function delete_intrest(Good good) public returns (bool) {
+  function delete_intrest(Good memory good) public returns (bool) {
       return true;
   }
 

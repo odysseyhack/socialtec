@@ -6,7 +6,7 @@ GOTEST=$(GOCMD) test
 GOMOD=$(GOCMD) mod
 BINARY_DIR=$(CURRENT_DIR)/bin
 BINARY_NAME=$(BINARY_DIR)/givo
-API_DIR=$(CURRENT_DIR)/../../api/givo
+API_DIR=$(CURRENT_DIR)/../api
 
 all: test build
 
@@ -24,7 +24,7 @@ run: build
 	$(BINARY_NAME)
 
 doc: build
-	$(BINARY_NAME) -routes > $(API_DIR)/README.md
+	$(BINARY_NAME) -routes > $(API_DIR)/routes.json
 
 deps:
 	$(GOMOD) tidy -v

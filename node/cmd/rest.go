@@ -34,8 +34,8 @@ func addRouters(r *chi.Mux) {
 		w.Write([]byte("intrest added"))
 	})
 
-	// DELETE /intrest/:product_id  remove intrest in an item
-	r.Delete("/intrest/:offer_id", func(w http.ResponseWriter, r *http.Request) {
+	// DELETE /interest/:product_id  remove intrest in an item
+	r.Delete("/interest/:offer_id", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("intrest delete"))
 	})
 }
@@ -54,6 +54,8 @@ type Config struct {
 		Host string
 		Port string
 	}
+	Host string
+	Port int
 }
 
 func initDependencies(conf *Config) error {
@@ -62,16 +64,12 @@ func initDependencies(conf *Config) error {
 
 func main() {
 	flag.Parse()
-
 	r := chi.NewRouter()
+	initDependencies(&Config{})
 	addMiddleWares(r)
 	addRouters(r)
-
 	if *routes {
-		fmt.Println(docgen.MarkdownRoutesDoc(r, docgen.MarkdownOpts{
-			ProjectPath: "github.com/odysseyhack/socialtec/api/cmd/givo",
-			Intro:       "Givo API",
-		}))
+		fmt.Print(docgen.JSONRoutesDoc(r))
 		return
 	}
 	http.ListenAndServe(":3333", r)

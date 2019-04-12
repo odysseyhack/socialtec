@@ -25,10 +25,14 @@ contract givo {
   }
 
   Node[] nodes;
-  mapping (uint => Good[]) public offers;
+  mapping (uint => Good[]) offers;
   mapping (address => uint) address_to_id;
 
-  function create_good(string memory name, string memory ipfs_image, string memory ipfs_details) public returns (bool) {
+  function create_offer(string memory name, string memory ipfs_image, string memory ipfs_details) public returns (bool) {
     return true;
+  }
+
+  function get_offers() public view returns (Good[][] memory offers){
+      return offers;
   }
 }

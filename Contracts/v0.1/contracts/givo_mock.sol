@@ -28,7 +28,7 @@ contract givo {
   mapping (uint => Good[]) public offers;
   mapping (address => uint) address_to_id;
 
-  function create_good(uint id, string memory name, string memory ipfs_image, string memory ipfs_details) internal returns (bool) {
+  function create_good(uint id, string memory name, string memory ipfs_image, string memory ipfs_details) external returns (bool) {
     return true;
   }
 }

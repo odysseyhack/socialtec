@@ -32,8 +32,14 @@ contract givo {
     return true;
   }
 
-  function get_offers() public view returns (Good[][] memory offers){
-      return offers;
+  function get_offers() public view returns (Good[1][1] memory goods){
+      Good memory good;
+      good.node = msg.sender;
+      good.name = "apple";
+      good.ipfs_image = "ball";
+      good.ipfs_details = "ball";
+      goods[0][0]= good;
+      return goods;
   }
 
   function add_intrest(Good memory good) public returns (bool) {

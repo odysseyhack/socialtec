@@ -1,6 +1,5 @@
 pragma solidity >=0.4.0 <0.7.0;
 
-pragma experimental ABIEncoderV2;
 
 contract givo {
 
@@ -28,25 +27,28 @@ contract givo {
   mapping (uint => Good[]) offers;
   mapping (address => uint) address_to_id;
 
+  function get_offers() public view returns (
+    //address[1] memory node,
+    //string[1] memory name,
+    //string[1] memory ipfs_image,
+    string memory ipfs_details){
+       // node[0] = msg.sender;
+        //name[0] = "apple";
+        //ipfs_image[0] = "ball";
+        ipfs_details = "cat";
+    return(ipfs_details);
+  }
+
   function create_offer(string memory name, string memory ipfs_image, string memory ipfs_details) public returns (bool) {
     return true;
   }
 
-  function get_offers() public view returns (Good[1][1] memory goods){
-      Good memory good;
-      good.node = msg.sender;
-      good.name = "apple";
-      good.ipfs_image = "ball";
-      good.ipfs_details = "ball";
-      goods[0][0]= good;
-      return goods;
-  }
 
-  function add_intrest(Good memory good) public returns (bool) {
+  function add_intrest(uint node_id, uint good_id) public returns (bool) {
       return true;
   }
 
-  function delete_intrest(Good memory good) public returns (bool) {
+  function delete_intrest(uint node_id, uint good_id) public returns (bool) {
       return true;
   }
 

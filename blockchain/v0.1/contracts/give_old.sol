@@ -76,7 +76,7 @@ contract givo {
 
   //I like your good X please check mine
   //My good X is no more available please remove it from like list.
-  //I dont like your good anymore.
+  //I dont want your good anymore.
   //I will give you good X tell A give good Y to me.
   //Cycle Completed
 

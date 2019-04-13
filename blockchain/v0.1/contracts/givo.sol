@@ -17,7 +17,11 @@ contract givo {
   mapping (uint => Good[]) public offers;
   mapping (address => uint) address_to_id;
 
-  event intrested(uint to, uint good_id, address from);
+  event intrested(uint to, uint good_id, uint from);
+  event not_intrested(uint to, uint good_id, uint from);
+  event refer(uint to, uint good_id, uint from, uint refer_id);
+  event deleted(uint owner, uint good_id);
+  event chained(uint to, uint get_owner, uint get_good_id, uint give_owner, uint give_good_id);
 
   function create_offer(string memory name, string memory ipfs_image, string memory ipfs_details) public returns (bool) {
     Good[] storage my_offers = offers[address_to_id[msg.sender]];
@@ -35,6 +39,7 @@ contract givo {
     require(my_offers.length>=good_id);
     my_offers[good_id] = my_offers[my_offers.length-1];
     my_offers.pop();
+    emit deleted(address_to_id[msg.sender], good_id);
   }
 
 /*  function get_offers(uint page) public view returns (Good[page_size][good_count] memory goods){
@@ -55,11 +60,21 @@ contract givo {
   }*/
 
   function add_intrest(uint node_id, uint good_id) public {
-      emit intrested(node_id, good_id, msg.sender);
+      emit intrested(node_id, good_id, address_to_id[msg.sender]);
   }
 
-  function delete_intrest(uint node_id, uint good_id) public returns (bool) {
-      return true;
+  function delete_intrest(uint node_id, uint good_id) public {
+      emit intrested(node_id, good_id, address_to_id[msg.sender]);
   }
+
+  function refer_intrest(uint node_id, uint good_id, uint refer_id) public {
+      emit refer(node_id, good_id, address_to_id[msg.sender], refer_id);
+  }
+
+  function cycle_formed(uint to, uint get_good_id, uint give_owner, uint give_good_id) public{
+      emit chained(to, address_to_id[msg.sender], get_good_id, give_owner, give_good_id);
+  }
+
+
 
 }

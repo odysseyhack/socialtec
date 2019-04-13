@@ -25,6 +25,9 @@ type client struct {
 
 // NewMarket Creates a market instance
 func NewMarket(netURL string, keyString string) Market {
+
+	addrString := "0xb3fb6a3f1e03c7Ef147113A0A26694812067d905"
+
 	conn, err := ethclient.Dial(netURL)
 	if err != nil {
 		log.Fatalf("Something went wrong connecting err: %v", err)
@@ -34,11 +37,15 @@ func NewMarket(netURL string, keyString string) Market {
 		log.Fatalf("Something went wrong creating ECDSA key: %v", err)
 	}
 	tc := bind.NewKeyedTransactor(key)
-	addr, _, givo, err := DeployGivo(tc, conn)
+	//addr, _, givo, err := DeployGivo(tc, conn)
+	//if err != nil {
+	//	log.Fatalf("Something went wrong deploying with error err: %v", err)
+	//}
+	addr := common.HexToAddress(addrString)
+	givo, err := NewGivo(addr, conn)
 	if err != nil {
-		log.Fatalf("Something went wrong deploying with error err: %v", err)
+		log.Fatalf("failed creating givo instance: %v", err)
 	}
-
 	session := GivoSession{
 		Contract:     givo,
 		TransactOpts: *tc,
@@ -65,28 +72,30 @@ func (c *client) LoadAccout() {
 
 //AddOffer adds an offer
 func (c *client) AddOffer(offer Offer) error {
-	fmt.Println("givo: ", c.contractAddr.String())
-	tr, err := c.session.CreateOffer(offer.Name, offer.ImageURL, offer.Details)
-	fmt.Println("Created offer", tr.Value(), err)
+	_, err := c.session.CreateOffer(offer.Name, offer.ImageURL, offer.Details)
 	return err
 }
 
 func (c *client) GetAvailableOffers(pageNumber int) ([]Offer, error) {
 	var offers []Offer
-	for i := 0; i < 1; i++ {
-		offer, err := c.session.Offers(big.NewInt(0), big.NewInt(0))
+	var max, lastIndex int64 = 4, 0
+
+	for i := lastIndex; i < max; i++ {
+		offer, err := c.session.AllGoods(big.NewInt(i))
 		if err != nil {
 			return nil, err
 		}
 		offers = append(offers, Offer{
-			Node:     offer.Node.Hex(),
+			Node:     offer.Node.Uint64(),
 			Name:     offer.Name,
 			Details:  offer.IpfsDetails,
 			ImageURL: offer.IpfsImage,
 		})
 	}
+
 	return offers, nil
 }
+
 func (c *client) DeleteOffer(offerID int64) error {
 	_, err := c.session.DeleteOffer(big.NewInt(offerID))
 	if err != nil {
@@ -94,15 +103,17 @@ func (c *client) DeleteOffer(offerID int64) error {
 	}
 	return nil
 }
+
 func (c *client) ShowIntrest(offerID int64) error {
-	_, err := c.session.AddIntrest(big.NewInt(0), big.NewInt(offerID))
+	_, err := c.session.AddIntrest(big.NewInt(offerID))
 	if err != nil {
 		return err
 	}
 	return nil
 }
+
 func (c *client) RemoveIntrest(offerID int64) error {
-	_, err := c.session.DeleteIntrest(big.NewInt(0), big.NewInt(offerID))
+	_, err := c.session.DeleteIntrest(big.NewInt(offerID))
 	if err != nil {
 		return err
 	}

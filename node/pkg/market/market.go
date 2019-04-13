@@ -11,11 +11,11 @@ type Market interface {
 
 // Offer defines the structure of an Offer
 type Offer struct {
-	Node     string `json:"node"`
+	Node     uint64 `json:"node"`
 	Name     string `json:"name"`
 	Details  string `json:"details"`
 	ImageURL string `json:"image_url"`
-	ID       string `json:"id"`
+	ID       int64  `json:"id"`
 }
 
 // DefaultMarket is the singleton to be used

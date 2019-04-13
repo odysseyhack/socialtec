@@ -13,6 +13,7 @@ require (
 	github.com/ethereum/go-ethereum v1.8.26
 	github.com/fjl/memsize v0.0.0-20180929194037-2a09253e352a // indirect
 	github.com/go-chi/chi v4.0.2+incompatible
+	github.com/go-chi/cors v1.0.0
 	github.com/go-chi/docgen v1.0.5
 	github.com/go-chi/render v1.0.1
 	github.com/go-stack/stack v1.8.0 // indirect

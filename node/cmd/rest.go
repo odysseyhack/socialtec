@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/go-chi/cors"
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/docgen"
@@ -34,17 +36,25 @@ func addRouters(r *chi.Mux) {
 	r.Delete("/offers/{offerID}", handler.DeleteOffer)
 
 	// PUT /interest registers intrest for an item
-	r.Put("/interest/{offerID}", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("intrest added"))
-	})
+	r.Put("/interest/{offerID}", handler.AddInterest)
 
 	// DELETE /interest/:product_id  remove intrest in an item
-	r.Delete("/interest/{offerID}", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("intrest delete"))
-	})
+	r.Delete("/interest/{offerID}", handler.DeleteInterest)
 }
 
 func addMiddleWares(r *chi.Mux) {
+	// Basic CORS
+	// for more ideas, see: https://developer.github.com/v3/#cross-origin-resource-sharing
+	cors := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300, // Maximum value not ignored by any of major browsers
+	})
+	r.Use(cors.Handler)
+
 	r.Use(middleware.RequestID)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)

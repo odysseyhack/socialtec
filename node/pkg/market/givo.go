@@ -28,10 +28,10 @@ var (
 )
 
 // GivoABI is the input ABI used to generate the binding from.
-const GivoABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"node_id\",\"type\":\"uint256\"},{\"name\":\"good_id\",\"type\":\"uint256\"},{\"name\":\"refer_id\",\"type\":\"uint256\"}],\"name\":\"refer_intrest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"to\",\"type\":\"uint256\"},{\"name\":\"get_good_id\",\"type\":\"uint256\"},{\"name\":\"give_owner\",\"type\":\"uint256\"},{\"name\":\"give_good_id\",\"type\":\"uint256\"}],\"name\":\"cycle_formed\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"offers\",\"outputs\":[{\"name\":\"node\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"ipfs_image\",\"type\":\"string\"},{\"name\":\"ipfs_details\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node_id\",\"type\":\"uint256\"},{\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"add_intrest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"node_cntr\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"delete_offer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node_id\",\"type\":\"uint256\"},{\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"delete_intrest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"ipfs_image\",\"type\":\"string\"},{\"name\":\"ipfs_details\",\"type\":\"string\"}],\"name\":\"create_offer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"from\",\"type\":\"uint256\"}],\"name\":\"intrested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"from\",\"type\":\"uint256\"}],\"name\":\"not_intrested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"refer_id\",\"type\":\"uint256\"}],\"name\":\"refer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"owner\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"deleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"get_owner\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"get_good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"give_owner\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"give_good_id\",\"type\":\"uint256\"}],\"name\":\"chained\",\"type\":\"event\"}]"
+const GivoABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"to\",\"type\":\"uint256\"},{\"name\":\"get_good_id\",\"type\":\"uint256\"},{\"name\":\"give_owner\",\"type\":\"uint256\"},{\"name\":\"give_good_id\",\"type\":\"uint256\"}],\"name\":\"cycle_formed\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"offers\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"node_id\",\"type\":\"uint256\"}],\"name\":\"get_offers\",\"outputs\":[{\"name\":\"my_offers\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"node_cntr\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"delete_offer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"add_intrest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"delete_intrest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"ipfs_image\",\"type\":\"string\"},{\"name\":\"ipfs_details\",\"type\":\"string\"}],\"name\":\"create_offer\",\"outputs\":[{\"name\":\"good_id\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"good_id\",\"type\":\"uint256\"},{\"name\":\"refer_id\",\"type\":\"uint256\"}],\"name\":\"refer_intrest\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"all_goods\",\"outputs\":[{\"name\":\"node\",\"type\":\"uint256\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"ipfs_image\",\"type\":\"string\"},{\"name\":\"ipfs_details\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"from\",\"type\":\"uint256\"}],\"name\":\"intrested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"from\",\"type\":\"uint256\"}],\"name\":\"not_intrested\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"from\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"refer_id\",\"type\":\"uint256\"}],\"name\":\"refer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"owner\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"good_id\",\"type\":\"uint256\"}],\"name\":\"deleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"get_owner\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"get_good_id\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"give_owner\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"give_good_id\",\"type\":\"uint256\"}],\"name\":\"chained\",\"type\":\"event\"}]"
 
 // GivoBin is the compiled bytecode used for deploying new contracts.
-const GivoBin = `0x60806040526000805534801561001457600080fd5b50610be9806100246000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c806386c123621161005b57806386c123621461028a578063881d9637146102a4578063a7fb194b14610267578063c175cdd3146102c157610088565b8063394db5741461008d57806343cef25e146100b85780634d03a9a5146100e757806356679f0c14610267575b600080fd5b6100b6600480360360608110156100a357600080fd5b5080359060208101359060400135610489565b005b6100b6600480360360808110156100ce57600080fd5b50803590602081013590604081013590606001356104e4565b61010a600480360360408110156100fd57600080fd5b5080359060200135610547565b60405180856001600160a01b03166001600160a01b03168152602001806020018060200180602001848103845287818151815260200191508051906020019080838360005b8381101561016757818101518382015260200161014f565b50505050905090810190601f1680156101945780820380516001836020036101000a031916815260200191505b50848103835286518152865160209182019188019080838360005b838110156101c75781810151838201526020016101af565b50505050905090810190601f1680156101f45780820380516001836020036101000a031916815260200191505b50848103825285518152855160209182019187019080838360005b8381101561022757818101518382015260200161020f565b50505050905090810190601f1680156102545780820380516001836020036101000a031916815260200191505b5097505050505050505060405180910390f35b6100b66004803603604081101561027d57600080fd5b5080359060200135610737565b61029261078a565b60408051918252519081900360200190f35b6100b6600480360360208110156102ba57600080fd5b5035610790565b610475600480360360608110156102d757600080fd5b8101906020810181356401000000008111156102f257600080fd5b82018360208201111561030457600080fd5b8035906020019184600183028401116401000000008311171561032657600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929594936020810193503591505064010000000081111561037957600080fd5b82018360208201111561038b57600080fd5b803590602001918460018302840111640100000000831117156103ad57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929594936020810193503591505064010000000081111561040057600080fd5b82018360208201111561041257600080fd5b8035906020019184600183028401116401000000008311171561043457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610939945050505050565b604080519115158252519081900360200190f35b33600090815260026020908152604091829020548251868152918201859052818301526060810183905290517fcc99f51473cc3bf43367db4f64d4efcdfd1acd4c70b4155cb7ffade4f2f6d3629181900360800190a1505050565b3360009081526002602090815260409182902054825187815291820152808201859052606081018490526080810183905290517f17d3c3f8c4f0fa8d1c6e1bb5edde9fda0537a5f56cafed38fea7b389ea9116879181900360a00190a150505050565b6001602052816000526040600020818154811061056057fe5b600091825260209182902060049091020180546001808301805460408051601f60026000199685161561010002969096019093169490940491820187900487028401870190528083526001600160a01b0390931696509294509283018282801561060b5780601f106105e05761010080835404028352916020019161060b565b820191906000526020600020905b8154815290600101906020018083116105ee57829003601f168201915b50505060028085018054604080516020601f600019610100600187161502019094169590950492830185900485028101850190915281815295969594509092509083018282801561069d5780601f106106725761010080835404028352916020019161069d565b820191906000526020600020905b81548152906001019060200180831161068057829003601f168201915b5050505060038301805460408051602060026001851615610100026000190190941693909304601f810184900484028201840190925281815294959493509083018282801561072d5780601f106107025761010080835404028352916020019161072d565b820191906000526020600020905b81548152906001019060200180831161071057829003601f168201915b5050505050905084565b336000908152600260209081526040918290205482518581529182018490528183015290517fcfeec790cb492f73558ea2f8bbac696dcb49ec548daa4ee42f15fe49088159769181900360600190a15050565b60005481565b3360009081526002602090815260408083205483526001909152902080548211156107ba57600080fd5b8054819060001981019081106107cc57fe5b90600052602060002090600402018183815481106107e657fe5b60009182526020909120825460049092020180546001600160a01b0319166001600160a01b039092169190911781556001808301805461083d92808501929160026000199282161561010002929092011604610a35565b5060028281018054610862928481019291600019610100600183161502011604610a35565b506003820181600301908054600181600116156101000203166002900461088a929190610a35565b509050508080548061089857fe5b60008281526020812060046000199093019283020180546001600160a01b0319168155906108c96001830182610aba565b6108d7600283016000610aba565b6108e5600383016000610aba565b505090553360009081526002602090815260409182902054825190815290810184905281517fa7510b9f06bca625a2290e8871362d0ccc23a2b155fc82b80c66cf8c285c7323929181900390910190a15050565b336000908152600260209081526040808320548352600190915281208054610974576000805433825260026020526040822081905560010190555b61097c610b01565b5060408051608081018252338152602080820188815292820187905260608201869052835460018082018087556000878152849020855160049094020180546001600160a01b0319166001600160a01b039094169390931783559451805194959486946109ed938501920190610b32565b5060408201518051610a09916002840191602090910190610b32565b5060608201518051610a25916003840191602090910190610b32565b5060019998505050505050505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610a6e5780548555610aaa565b82800160010185558215610aaa57600052602060002091601f016020900482015b82811115610aaa578254825591600101919060010190610a8f565b50610ab6929150610ba0565b5090565b50805460018160011615610100020316600290046000825580601f10610ae05750610afe565b601f016020900490600052602060002090810190610afe9190610ba0565b50565b604051806080016040528060006001600160a01b031681526020016060815260200160608152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610b7357805160ff1916838001178555610aaa565b82800160010185558215610aaa579182015b82811115610aaa578251825591602001919060010190610b85565b610bba91905b80821115610ab65760008155600101610ba6565b9056fea165627a7a72305820bc40bceffcd7f23907969dc213e82a8fe3f4697d8d1ba72843f973cba10605460029`
+const GivoBin = `0x60806040526000805534801561001457600080fd5b50610bd9806100246000396000f3fe608060405234801561001057600080fd5b506004361061009e5760003560e01c8063a2eeced911610066578063a2eeced91461019b578063b05538861461019b578063c175cdd3146101b8578063eeeb43791461036c578063f9833cc61461038f5761009e565b806343cef25e146100a35780634d03a9a5146100d45780634db5474c1461010957806386c1236214610176578063881d96371461017e575b600080fd5b6100d2600480360360808110156100b957600080fd5b50803590602081013590604081013590606001356104f7565b005b6100f7600480360360408110156100ea57600080fd5b508035906020013561055a565b60408051918252519081900360200190f35b6101266004803603602081101561011f57600080fd5b5035610588565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016257818101518382015260200161014a565b505050509050019250505060405180910390f35b6100f76105ea565b6100d26004803603602081101561019457600080fd5b50356105f0565b6100d2600480360360208110156101b157600080fd5b50356106c0565b6100f7600480360360608110156101ce57600080fd5b8101906020810181356401000000008111156101e957600080fd5b8201836020820111156101fb57600080fd5b8035906020019184600183028401116401000000008311171561021d57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929594936020810193503591505064010000000081111561027057600080fd5b82018360208201111561028257600080fd5b803590602001918460018302840111640100000000831117156102a457600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092959493602081019350359150506401000000008111156102f757600080fd5b82018360208201111561030957600080fd5b8035906020019184600183028401116401000000008311171561032b57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929550610733945050505050565b6100d26004803603604081101561038257600080fd5b5080359060200135610884565b6103ac600480360360208110156103a557600080fd5b50356108ff565b60405180858152602001806020018060200180602001848103845287818151815260200191508051906020019080838360005b838110156103f75781810151838201526020016103df565b50505050905090810190601f1680156104245780820380516001836020036101000a031916815260200191505b50848103835286518152865160209182019188019080838360005b8381101561045757818101518382015260200161043f565b50505050905090810190601f1680156104845780820380516001836020036101000a031916815260200191505b50848103825285518152855160209182019187019080838360005b838110156104b757818101518382015260200161049f565b50505050905090810190601f1680156104e45780820380516001836020036101000a031916815260200191505b5097505050505050505060405180910390f35b3360009081526002602090815260409182902054825187815291820152808201859052606081018490526080810183905290517f17d3c3f8c4f0fa8d1c6e1bb5edde9fda0537a5f56cafed38fea7b389ea9116879181900360a00190a150505050565b6001602052816000526040600020818154811061057357fe5b90600052602060002001600091509150505481565b6000818152600160209081526040918290208054835181840281018401909452808452606093928301828280156105de57602002820191906000526020600020905b8154815260200190600101908083116105ca575b50939695505050505050565b60005481565b33600090815260026020908152604080832054835260019091529020805482111561061a57600080fd5b80548190600019810190811061062c57fe5b906000526020600020015481838154811061064357fe5b90600052602060002001819055508080548061065b57fe5b6000828152602080822083016000199081018390559092019092553382526002815260409182902054825190815290810184905281517fa7510b9f06bca625a2290e8871362d0ccc23a2b155fc82b80c66cf8c285c7323929181900390910190a15050565b6000600382815481106106cf57fe5b60009182526020808320600490920290910154338352600282526040928390205483518281529283018690528284015291519192507fcfeec790cb492f73558ea2f8bbac696dcb49ec548daa4ee42f15fe4908815976919081900360600190a15050565b33600090815260026020908152604080832054835260019091528120805461076e576000805433825260026020526040822081905560010190555b610776610aea565b506040805160808101825233600090815260026020908152838220548352808301898152938301889052606083018790526003805460018082018084559290945284517fc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b60049092029182019081559551805195969495929487949093610823937fc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85c019290910190610b12565b506040820151805161083f916002840191602090910190610b12565b506060820151805161085b916003840191602090910190610b12565b505084546001810186556000958652602090952092909103919093018190559695505050505050565b60006003838154811061089357fe5b6000918252602080832060049092029091015433835260028252604092839020548351828152928301879052828401526060820185905291519192507fcc99f51473cc3bf43367db4f64d4efcdfd1acd4c70b4155cb7ffade4f2f6d362919081900360800190a1505050565b6003818154811061090c57fe5b9060005260206000209060040201600091509050806000015490806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156109be5780601f10610993576101008083540402835291602001916109be565b820191906000526020600020905b8154815290600101906020018083116109a157829003601f168201915b50505060028085018054604080516020601f6000196101006001871615020190941695909504928301859004850281018501909152818152959695945090925090830182828015610a505780601f10610a2557610100808354040283529160200191610a50565b820191906000526020600020905b815481529060010190602001808311610a3357829003601f168201915b5050505060038301805460408051602060026001851615610100026000190190941693909304601f8101849004840282018401909252818152949594935090830182828015610ae05780601f10610ab557610100808354040283529160200191610ae0565b820191906000526020600020905b815481529060010190602001808311610ac357829003601f168201915b5050505050905084565b6040518060800160405280600081526020016060815260200160608152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610b5357805160ff1916838001178555610b80565b82800160010185558215610b80579182015b82811115610b80578251825591602001919060010190610b65565b50610b8c929150610b90565b5090565b610baa91905b80821115610b8c5760008155600101610b96565b9056fea165627a7a72305820d332364343708b70036d7ce13fbc885b6e42905fdf9475493d64ff222f8650730029`
 
 // DeployGivo deploys a new Ethereum contract, binding an instance of Givo to it.
 func DeployGivo(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Givo, error) {
@@ -188,6 +188,76 @@ func (_Givo *GivoTransactorRaw) Transact(opts *bind.TransactOpts, method string,
 	return _Givo.Contract.contract.Transact(opts, method, params...)
 }
 
+// AllGoods is a free data retrieval call binding the contract method 0xf9833cc6.
+//
+// Solidity: function all_goods(uint256 ) constant returns(uint256 node, string name, string ipfs_image, string ipfs_details)
+func (_Givo *GivoCaller) AllGoods(opts *bind.CallOpts, arg0 *big.Int) (struct {
+	Node        *big.Int
+	Name        string
+	IpfsImage   string
+	IpfsDetails string
+}, error) {
+	ret := new(struct {
+		Node        *big.Int
+		Name        string
+		IpfsImage   string
+		IpfsDetails string
+	})
+	out := ret
+	err := _Givo.contract.Call(opts, out, "all_goods", arg0)
+	return *ret, err
+}
+
+// AllGoods is a free data retrieval call binding the contract method 0xf9833cc6.
+//
+// Solidity: function all_goods(uint256 ) constant returns(uint256 node, string name, string ipfs_image, string ipfs_details)
+func (_Givo *GivoSession) AllGoods(arg0 *big.Int) (struct {
+	Node        *big.Int
+	Name        string
+	IpfsImage   string
+	IpfsDetails string
+}, error) {
+	return _Givo.Contract.AllGoods(&_Givo.CallOpts, arg0)
+}
+
+// AllGoods is a free data retrieval call binding the contract method 0xf9833cc6.
+//
+// Solidity: function all_goods(uint256 ) constant returns(uint256 node, string name, string ipfs_image, string ipfs_details)
+func (_Givo *GivoCallerSession) AllGoods(arg0 *big.Int) (struct {
+	Node        *big.Int
+	Name        string
+	IpfsImage   string
+	IpfsDetails string
+}, error) {
+	return _Givo.Contract.AllGoods(&_Givo.CallOpts, arg0)
+}
+
+// GetOffers is a free data retrieval call binding the contract method 0x4db5474c.
+//
+// Solidity: function get_offers(uint256 node_id) constant returns(uint256[] my_offers)
+func (_Givo *GivoCaller) GetOffers(opts *bind.CallOpts, node_id *big.Int) ([]*big.Int, error) {
+	var (
+		ret0 = new([]*big.Int)
+	)
+	out := ret0
+	err := _Givo.contract.Call(opts, out, "get_offers", node_id)
+	return *ret0, err
+}
+
+// GetOffers is a free data retrieval call binding the contract method 0x4db5474c.
+//
+// Solidity: function get_offers(uint256 node_id) constant returns(uint256[] my_offers)
+func (_Givo *GivoSession) GetOffers(node_id *big.Int) ([]*big.Int, error) {
+	return _Givo.Contract.GetOffers(&_Givo.CallOpts, node_id)
+}
+
+// GetOffers is a free data retrieval call binding the contract method 0x4db5474c.
+//
+// Solidity: function get_offers(uint256 node_id) constant returns(uint256[] my_offers)
+func (_Givo *GivoCallerSession) GetOffers(node_id *big.Int) ([]*big.Int, error) {
+	return _Givo.Contract.GetOffers(&_Givo.CallOpts, node_id)
+}
+
 // NodeCntr is a free data retrieval call binding the contract method 0x86c12362.
 //
 // Solidity: function node_cntr() constant returns(uint256)
@@ -216,86 +286,68 @@ func (_Givo *GivoCallerSession) NodeCntr() (*big.Int, error) {
 
 // Offers is a free data retrieval call binding the contract method 0x4d03a9a5.
 //
-// Solidity: function offers(uint256 , uint256 ) constant returns(address node, string name, string ipfs_image, string ipfs_details)
-func (_Givo *GivoCaller) Offers(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (struct {
-	Node        common.Address
-	Name        string
-	IpfsImage   string
-	IpfsDetails string
-}, error) {
-	ret := new(struct {
-		Node        common.Address
-		Name        string
-		IpfsImage   string
-		IpfsDetails string
-	})
-	out := ret
+// Solidity: function offers(uint256 , uint256 ) constant returns(uint256)
+func (_Givo *GivoCaller) Offers(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
 	err := _Givo.contract.Call(opts, out, "offers", arg0, arg1)
-	return *ret, err
+	return *ret0, err
 }
 
 // Offers is a free data retrieval call binding the contract method 0x4d03a9a5.
 //
-// Solidity: function offers(uint256 , uint256 ) constant returns(address node, string name, string ipfs_image, string ipfs_details)
-func (_Givo *GivoSession) Offers(arg0 *big.Int, arg1 *big.Int) (struct {
-	Node        common.Address
-	Name        string
-	IpfsImage   string
-	IpfsDetails string
-}, error) {
+// Solidity: function offers(uint256 , uint256 ) constant returns(uint256)
+func (_Givo *GivoSession) Offers(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
 	return _Givo.Contract.Offers(&_Givo.CallOpts, arg0, arg1)
 }
 
 // Offers is a free data retrieval call binding the contract method 0x4d03a9a5.
 //
-// Solidity: function offers(uint256 , uint256 ) constant returns(address node, string name, string ipfs_image, string ipfs_details)
-func (_Givo *GivoCallerSession) Offers(arg0 *big.Int, arg1 *big.Int) (struct {
-	Node        common.Address
-	Name        string
-	IpfsImage   string
-	IpfsDetails string
-}, error) {
+// Solidity: function offers(uint256 , uint256 ) constant returns(uint256)
+func (_Givo *GivoCallerSession) Offers(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
 	return _Givo.Contract.Offers(&_Givo.CallOpts, arg0, arg1)
 }
 
-// AddIntrest is a paid mutator transaction binding the contract method 0x56679f0c.
+// AddIntrest is a paid mutator transaction binding the contract method 0xa2eeced9.
 //
-// Solidity: function add_intrest(uint256 node_id, uint256 good_id) returns()
-func (_Givo *GivoTransactor) AddIntrest(opts *bind.TransactOpts, node_id *big.Int, good_id *big.Int) (*types.Transaction, error) {
-	return _Givo.contract.Transact(opts, "add_intrest", node_id, good_id)
+// Solidity: function add_intrest(uint256 good_id) returns()
+func (_Givo *GivoTransactor) AddIntrest(opts *bind.TransactOpts, good_id *big.Int) (*types.Transaction, error) {
+	return _Givo.contract.Transact(opts, "add_intrest", good_id)
 }
 
-// AddIntrest is a paid mutator transaction binding the contract method 0x56679f0c.
+// AddIntrest is a paid mutator transaction binding the contract method 0xa2eeced9.
 //
-// Solidity: function add_intrest(uint256 node_id, uint256 good_id) returns()
-func (_Givo *GivoSession) AddIntrest(node_id *big.Int, good_id *big.Int) (*types.Transaction, error) {
-	return _Givo.Contract.AddIntrest(&_Givo.TransactOpts, node_id, good_id)
+// Solidity: function add_intrest(uint256 good_id) returns()
+func (_Givo *GivoSession) AddIntrest(good_id *big.Int) (*types.Transaction, error) {
+	return _Givo.Contract.AddIntrest(&_Givo.TransactOpts, good_id)
 }
 
-// AddIntrest is a paid mutator transaction binding the contract method 0x56679f0c.
+// AddIntrest is a paid mutator transaction binding the contract method 0xa2eeced9.
 //
-// Solidity: function add_intrest(uint256 node_id, uint256 good_id) returns()
-func (_Givo *GivoTransactorSession) AddIntrest(node_id *big.Int, good_id *big.Int) (*types.Transaction, error) {
-	return _Givo.Contract.AddIntrest(&_Givo.TransactOpts, node_id, good_id)
+// Solidity: function add_intrest(uint256 good_id) returns()
+func (_Givo *GivoTransactorSession) AddIntrest(good_id *big.Int) (*types.Transaction, error) {
+	return _Givo.Contract.AddIntrest(&_Givo.TransactOpts, good_id)
 }
 
 // CreateOffer is a paid mutator transaction binding the contract method 0xc175cdd3.
 //
-// Solidity: function create_offer(string name, string ipfs_image, string ipfs_details) returns(bool)
+// Solidity: function create_offer(string name, string ipfs_image, string ipfs_details) returns(uint256 good_id)
 func (_Givo *GivoTransactor) CreateOffer(opts *bind.TransactOpts, name string, ipfs_image string, ipfs_details string) (*types.Transaction, error) {
 	return _Givo.contract.Transact(opts, "create_offer", name, ipfs_image, ipfs_details)
 }
 
 // CreateOffer is a paid mutator transaction binding the contract method 0xc175cdd3.
 //
-// Solidity: function create_offer(string name, string ipfs_image, string ipfs_details) returns(bool)
+// Solidity: function create_offer(string name, string ipfs_image, string ipfs_details) returns(uint256 good_id)
 func (_Givo *GivoSession) CreateOffer(name string, ipfs_image string, ipfs_details string) (*types.Transaction, error) {
 	return _Givo.Contract.CreateOffer(&_Givo.TransactOpts, name, ipfs_image, ipfs_details)
 }
 
 // CreateOffer is a paid mutator transaction binding the contract method 0xc175cdd3.
 //
-// Solidity: function create_offer(string name, string ipfs_image, string ipfs_details) returns(bool)
+// Solidity: function create_offer(string name, string ipfs_image, string ipfs_details) returns(uint256 good_id)
 func (_Givo *GivoTransactorSession) CreateOffer(name string, ipfs_image string, ipfs_details string) (*types.Transaction, error) {
 	return _Givo.Contract.CreateOffer(&_Givo.TransactOpts, name, ipfs_image, ipfs_details)
 }
@@ -321,25 +373,25 @@ func (_Givo *GivoTransactorSession) CycleFormed(to *big.Int, get_good_id *big.In
 	return _Givo.Contract.CycleFormed(&_Givo.TransactOpts, to, get_good_id, give_owner, give_good_id)
 }
 
-// DeleteIntrest is a paid mutator transaction binding the contract method 0xa7fb194b.
+// DeleteIntrest is a paid mutator transaction binding the contract method 0xb0553886.
 //
-// Solidity: function delete_intrest(uint256 node_id, uint256 good_id) returns()
-func (_Givo *GivoTransactor) DeleteIntrest(opts *bind.TransactOpts, node_id *big.Int, good_id *big.Int) (*types.Transaction, error) {
-	return _Givo.contract.Transact(opts, "delete_intrest", node_id, good_id)
+// Solidity: function delete_intrest(uint256 good_id) returns()
+func (_Givo *GivoTransactor) DeleteIntrest(opts *bind.TransactOpts, good_id *big.Int) (*types.Transaction, error) {
+	return _Givo.contract.Transact(opts, "delete_intrest", good_id)
 }
 
-// DeleteIntrest is a paid mutator transaction binding the contract method 0xa7fb194b.
+// DeleteIntrest is a paid mutator transaction binding the contract method 0xb0553886.
 //
-// Solidity: function delete_intrest(uint256 node_id, uint256 good_id) returns()
-func (_Givo *GivoSession) DeleteIntrest(node_id *big.Int, good_id *big.Int) (*types.Transaction, error) {
-	return _Givo.Contract.DeleteIntrest(&_Givo.TransactOpts, node_id, good_id)
+// Solidity: function delete_intrest(uint256 good_id) returns()
+func (_Givo *GivoSession) DeleteIntrest(good_id *big.Int) (*types.Transaction, error) {
+	return _Givo.Contract.DeleteIntrest(&_Givo.TransactOpts, good_id)
 }
 
-// DeleteIntrest is a paid mutator transaction binding the contract method 0xa7fb194b.
+// DeleteIntrest is a paid mutator transaction binding the contract method 0xb0553886.
 //
-// Solidity: function delete_intrest(uint256 node_id, uint256 good_id) returns()
-func (_Givo *GivoTransactorSession) DeleteIntrest(node_id *big.Int, good_id *big.Int) (*types.Transaction, error) {
-	return _Givo.Contract.DeleteIntrest(&_Givo.TransactOpts, node_id, good_id)
+// Solidity: function delete_intrest(uint256 good_id) returns()
+func (_Givo *GivoTransactorSession) DeleteIntrest(good_id *big.Int) (*types.Transaction, error) {
+	return _Givo.Contract.DeleteIntrest(&_Givo.TransactOpts, good_id)
 }
 
 // DeleteOffer is a paid mutator transaction binding the contract method 0x881d9637.
@@ -363,25 +415,25 @@ func (_Givo *GivoTransactorSession) DeleteOffer(good_id *big.Int) (*types.Transa
 	return _Givo.Contract.DeleteOffer(&_Givo.TransactOpts, good_id)
 }
 
-// ReferIntrest is a paid mutator transaction binding the contract method 0x394db574.
+// ReferIntrest is a paid mutator transaction binding the contract method 0xeeeb4379.
 //
-// Solidity: function refer_intrest(uint256 node_id, uint256 good_id, uint256 refer_id) returns()
-func (_Givo *GivoTransactor) ReferIntrest(opts *bind.TransactOpts, node_id *big.Int, good_id *big.Int, refer_id *big.Int) (*types.Transaction, error) {
-	return _Givo.contract.Transact(opts, "refer_intrest", node_id, good_id, refer_id)
+// Solidity: function refer_intrest(uint256 good_id, uint256 refer_id) returns()
+func (_Givo *GivoTransactor) ReferIntrest(opts *bind.TransactOpts, good_id *big.Int, refer_id *big.Int) (*types.Transaction, error) {
+	return _Givo.contract.Transact(opts, "refer_intrest", good_id, refer_id)
 }
 
-// ReferIntrest is a paid mutator transaction binding the contract method 0x394db574.
+// ReferIntrest is a paid mutator transaction binding the contract method 0xeeeb4379.
 //
-// Solidity: function refer_intrest(uint256 node_id, uint256 good_id, uint256 refer_id) returns()
-func (_Givo *GivoSession) ReferIntrest(node_id *big.Int, good_id *big.Int, refer_id *big.Int) (*types.Transaction, error) {
-	return _Givo.Contract.ReferIntrest(&_Givo.TransactOpts, node_id, good_id, refer_id)
+// Solidity: function refer_intrest(uint256 good_id, uint256 refer_id) returns()
+func (_Givo *GivoSession) ReferIntrest(good_id *big.Int, refer_id *big.Int) (*types.Transaction, error) {
+	return _Givo.Contract.ReferIntrest(&_Givo.TransactOpts, good_id, refer_id)
 }
 
-// ReferIntrest is a paid mutator transaction binding the contract method 0x394db574.
+// ReferIntrest is a paid mutator transaction binding the contract method 0xeeeb4379.
 //
-// Solidity: function refer_intrest(uint256 node_id, uint256 good_id, uint256 refer_id) returns()
-func (_Givo *GivoTransactorSession) ReferIntrest(node_id *big.Int, good_id *big.Int, refer_id *big.Int) (*types.Transaction, error) {
-	return _Givo.Contract.ReferIntrest(&_Givo.TransactOpts, node_id, good_id, refer_id)
+// Solidity: function refer_intrest(uint256 good_id, uint256 refer_id) returns()
+func (_Givo *GivoTransactorSession) ReferIntrest(good_id *big.Int, refer_id *big.Int) (*types.Transaction, error) {
+	return _Givo.Contract.ReferIntrest(&_Givo.TransactOpts, good_id, refer_id)
 }
 
 // GivoChainedIterator is returned from FilterChained and is used to iterate over the raw logs and unpacked data for Chained events raised by the Givo contract.

@@ -6,6 +6,8 @@ contract givo {
 
   struct Good {
     uint node;
+    uint index;
+    bool available;
     string name;
     string ipfs_image;
     string ipfs_details;
@@ -30,17 +32,23 @@ contract givo {
         address_to_id[msg.sender] = node_cntr;
         node_cntr++;
     }
-    Good memory new_good = Good(address_to_id[msg.sender], name, ipfs_image, ipfs_details);
+    Good memory new_good = Good(address_to_id[msg.sender], 0, true, name, ipfs_image, ipfs_details);
     good_id = all_goods.push(new_good)-1;
-    my_offers.push(good_id);
-    max_all_good = good_id+1;
+    uint index = my_offers.push(good_id) -1;
+    new_good.index = index;
+    max_all_good = good_id;
     return good_id;
   }
 
   function delete_offer(uint good_id) public{
     uint[] storage my_offers = offers[address_to_id[msg.sender]];
-    require(my_offers.length>=good_id);
-    my_offers[good_id] = my_offers[my_offers.length-1];
+    Good storage my_good = all_goods[good_id];
+    require(max_all_good>good_id);
+    require(my_good.node==address_to_id[msg.sender]);
+    my_good.available =false;
+    my_offers[my_good.index] = my_offers[my_offers.length-1];
+    Good storage last_good = all_goods[my_offers[my_good.index]];
+    last_good.index = my_good.index;
     my_offers.pop();
     emit deleted(address_to_id[msg.sender], good_id);
   }

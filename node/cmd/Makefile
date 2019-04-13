@@ -10,7 +10,7 @@ API_DIR=$(CURRENT_DIR)/../api
 
 all: test build
 
-build: deps $(BUILD_DIR)
+build:  $(BUILD_DIR)
 	$(GOBUILD)  -o $(BINARY_NAME) -v .
 
 test: 

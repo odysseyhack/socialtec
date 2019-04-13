@@ -269,6 +269,8 @@ body {
 .match-found {
 	@extend .modal;
 
+	padding-left: 0;
+
 	.modal-full {
 		min-width: 100%;
 		margin: 0;
@@ -278,11 +280,16 @@ body {
 		min-height: 100vh;
 	}
 
-	.modal-content {
-		background-color: $tertiary;
+	.modal-header {
+		background-color: $primary;
+		border-bottom: 0;
 		border-radius: 0;
+		color: #fff;
 	}
 
+	.modal-content {
+		background-color: $tertiary;
+	}
 
 	.offer, .request {
 		@extend .col-12;
@@ -291,8 +298,6 @@ body {
 
 	.offer__content, .request__content {
 		background-color: #fff;
-		//padding-left: 30%;
-		//position: relative;
 	}
 
 	.offer__image, .request__image {
@@ -300,15 +305,16 @@ body {
 		background-position: center center;
 		height: 200px;
 		width: 100%;
-		//position: absolute;
-		//top: 0;
-		//left: 0;
-		//z-index: 10;
 	}
 
 	.offer__body, .request__body {
 		padding: $grid-gutter-width;
 		position: relative;		
+	}
+
+	.close {
+		color: #fff;
+		text-shadow: 0;
 	}
 }
 

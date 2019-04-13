@@ -10,7 +10,7 @@ API_DIR=$(CURRENT_DIR)/../api
 
 all: test build
 
-build: deps $(BUILD_DIR)
+build:  $(BUILD_DIR)
 	$(GOBUILD)  -o $(BINARY_NAME) -v .
 
 test: 
@@ -26,7 +26,10 @@ run: build
 doc: build
 	$(BINARY_NAME) -routes > $(API_DIR)/routes.json
 
-deps:
+sol:
+	abigen --sol=$(CURRENT_DIR)/../../blockchain/v0.1/contracts/givo.sol --pkg=market > $(CURRENT_DIR)/../pkg/market/givo.go
+
+deps: sol
 	$(GOMOD) tidy -v
 
 $(BINARY_DIR):

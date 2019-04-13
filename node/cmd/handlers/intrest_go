@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -10,18 +9,6 @@ import (
 	"github.com/go-chi/render"
 	"github.com/odysseyhack/socialtec/node/pkg/market"
 )
-
-func getAllOffers() []market.Offer {
-	var offers []market.Offer
-	for i := 0; i < 10; i++ {
-		offers = append(offers, market.Offer{
-			Name:     "dsasas",
-			Details:  "sasas" + fmt.Sprint(i),
-			ImageURL: "https://via.placeholder.com/150",
-		})
-	}
-	return offers
-}
 
 func (handler Handler) NewOffer(w http.ResponseWriter, r *http.Request) {
 	var offer market.Offer
@@ -53,30 +40,6 @@ func (handler Handler) DeleteOffer(w http.ResponseWriter, r *http.Request) {
 	offerID := getOfferID(r)
 
 	err := handler.market.DeleteOffer(offerID)
-	if err != nil {
-		render.Status(r, http.StatusInternalServerError)
-		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
-		return
-	}
-	render.JSON(w, r, map[string]interface{}{"success": true})
-}
-
-func (handler Handler) AddInterest(w http.ResponseWriter, r *http.Request) {
-	offerID := getOfferID(r)
-
-	err := handler.market.ShowIntrest(offerID)
-	if err != nil {
-		render.Status(r, http.StatusInternalServerError)
-		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
-		return
-	}
-	render.JSON(w, r, map[string]interface{}{"success": true})
-}
-
-func (handler Handler) DeleteInterest(w http.ResponseWriter, r *http.Request) {
-	offerID := getOfferID(r)
-
-	err := handler.market.RemoveIntrest(offerID)
 	if err != nil {
 		render.Status(r, http.StatusInternalServerError)
 		render.JSON(w, r, map[string]interface{}{"error": err.Error()})

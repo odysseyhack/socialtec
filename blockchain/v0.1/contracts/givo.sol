@@ -13,6 +13,7 @@ contract givo {
 
   uint constant good_count = 5;
   uint public node_cntr = 0;
+  uint public max_all_good =0;
   mapping (uint => uint[]) public offers;
   mapping (address => uint) address_to_id;
   Good[] public all_goods;
@@ -32,6 +33,7 @@ contract givo {
     Good memory new_good = Good(address_to_id[msg.sender], name, ipfs_image, ipfs_details);
     good_id = all_goods.push(new_good)-1;
     my_offers.push(good_id);
+    max_all_good = good_id+1;
     return good_id;
   }
 
@@ -66,5 +68,7 @@ contract givo {
   function cycle_formed(uint to, uint get_good_id, uint give_owner, uint give_good_id) public{
       emit chained(to, address_to_id[msg.sender], get_good_id, give_owner, give_good_id);
   }
+
+
 
 }

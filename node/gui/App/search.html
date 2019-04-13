@@ -39,10 +39,13 @@
 					<div class="navbar-menu collapse navbar-collapse" id="navbar-menu">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
-								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+								<a class="nav-link" href="search.html">Explore <span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Link</a>
+								<a class="nav-link" href="offer.html">My Offer</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="login.html">Sign in</a>
 							</li>
 						</ul>
 					</div>
@@ -151,7 +154,7 @@
 			<div class="footer__container">
 				<div class="footer__wrapper">
 					<div class="footer-nav">
-						<button class="btn-next">next &raquo;</button>
+						<a class="btn-next" href="offer.html">next &raquo;</a>
 						<ol class="pagination-bullets">
 							<li class="active"></li>
 							<li></li>
@@ -160,7 +163,46 @@
 					</div>
 				</div>
 			</div>
+			<a href="#match-found" role="button" class="btn btn-primary" data-toggle="modal">Launch modal</a>
 		</footer>
+
+<div class="match-found" id="match-found" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-full" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="match">Match found!</h3>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+
+			<div class="modal-body p-4" id="result">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui explicabo optio assumenda, repellendus, a rerum!</p>
+				<div class="row">
+					<div class="offer col-12">
+						<div class="offer__content">
+							<div class="offer__image" style="background-image: url(https://source.unsplash.com/700x700/?service);"></div>
+							<div class="offer__body">
+								<h3 class="offer__title">Shoes</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, nam?</p>
+							</div>
+						</div>
+					</div>
+					<div class="request col-12">
+						<div class="request__content">
+							<div class="request__image" style="background-image: url(https://source.unsplash.com/700x700/?product);"></div>
+							<div class="request__body">
+								<h3 class="request__title">Something</h3>
+								<p>Provident, nam? Lorem ipsum dolor sit amet adipisicing elit.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>

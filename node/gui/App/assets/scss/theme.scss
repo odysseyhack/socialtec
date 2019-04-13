@@ -45,7 +45,7 @@ body {
 	height: 65px;
 	position: fixed;
 	box-shadow: 0px 0 10px rgba(0,0,0,0.1);
-	z-index: 10;
+	z-index: 1000;
 
 	.navbar {
 		color: #fff;
@@ -259,6 +259,56 @@ body {
 				display: none;
 			}
 		}
+	}
+}
+
+
+// --------------------------------------------------
+// Match-found
+// --------------------------------------------------
+.match-found {
+	@extend .modal;
+
+	.modal-full {
+		min-width: 100%;
+		margin: 0;
+	}
+
+	.modal-full .modal-content {
+		min-height: 100vh;
+	}
+
+	.modal-content {
+		background-color: $tertiary;
+		border-radius: 0;
+	}
+
+
+	.offer, .request {
+		@extend .col-12;
+		margin-bottom: $grid-gutter-width;
+	}
+
+	.offer__content, .request__content {
+		background-color: #fff;
+		//padding-left: 30%;
+		//position: relative;
+	}
+
+	.offer__image, .request__image {
+		background-size: cover;
+		background-position: center center;
+		height: 200px;
+		width: 100%;
+		//position: absolute;
+		//top: 0;
+		//left: 0;
+		//z-index: 10;
+	}
+
+	.offer__body, .request__body {
+		padding: $grid-gutter-width;
+		position: relative;		
 	}
 }
 

@@ -9,33 +9,36 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/docgen"
 	"github.com/go-chi/render"
+
+	"github.com/odysseyhack/socialtec/node/cmd/handlers"
 )
 
 var routes = flag.Bool("routes", false, "Generate api documentation")
 
 func addRouters(r *chi.Mux) {
+	handler := handlers.NewHandler(nil)
+
 	// /ping is used as the health check route
 	r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("pong"))
 	})
 
 	// GET /offers returns all the available offers
-	r.Get("/offers", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("offers returned"))
-	})
+	r.Get("/offers", handler.GetOffers)
 
 	// POST /offers registers items as being offered by the user
-	r.Post("/offers", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("offers added"))
-	})
+	r.Post("/offers", handler.NewOffer)
+
+	// DELETE /offers deletes and offer
+	r.Delete("/offers/{offerID}", handler.DeleteOffer)
 
 	// PUT /interest registers intrest for an item
-	r.Put("/interest/:offer_id", func(w http.ResponseWriter, r *http.Request) {
+	r.Put("/interest/{offerID}", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("intrest added"))
 	})
 
 	// DELETE /interest/:product_id  remove intrest in an item
-	r.Delete("/interest/:offer_id", func(w http.ResponseWriter, r *http.Request) {
+	r.Delete("/interest/{offerID}", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("intrest delete"))
 	})
 }

@@ -45,20 +45,20 @@
             "middlewares": [],
             "method": "DELETE",
             "pkg": "",
-            "func": "main.addRouters.func5",
+            "func": "main.addRouters.func4",
             "comment": "DELETE /interest/:product_id  remove intrest in an item\n",
             "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 38,
+            "line": 40,
             "anonymous": true
           },
           "PUT": {
             "middlewares": [],
             "method": "PUT",
             "pkg": "",
-            "func": "main.addRouters.func4",
+            "func": "main.addRouters.func3",
             "comment": "PUT /interest registers intrest for an item\n",
             "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 33,
+            "line": 35,
             "anonymous": true
           }
         }
@@ -72,18 +72,17 @@
             "func": "main.addRouters.func2",
             "comment": "GET /offers returns all the available offers\n",
             "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 23,
+            "line": 27,
             "anonymous": true
           },
           "POST": {
             "middlewares": [],
             "method": "POST",
-            "pkg": "",
-            "func": "main.addRouters.func3",
-            "comment": "POST /offers registers items as being offered by the user\n",
-            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 28,
-            "anonymous": true
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.NewOffers-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/offer.go",
+            "line": 18
           }
         }
       },
@@ -96,7 +95,7 @@
             "func": "main.addRouters.func1",
             "comment": "/ping is used as the health check route\n",
             "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 18,
+            "line": 22,
             "anonymous": true
           }
         }

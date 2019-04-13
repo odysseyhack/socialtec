@@ -23,11 +23,21 @@ require (
 	github.com/karalabe/hid v0.0.0-20181128192157-d815e0c1a2e2 // indirect
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mattn/go-isatty v0.0.7 // indirect
+	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/pborman/uuid v1.2.0 // indirect
 	github.com/rjeczalik/notify v0.9.2 // indirect
-	github.com/rs/cors v1.6.0 // indirect
+	github.com/rs/cors v1.6.0
+	github.com/sarathsp06/gologger v0.0.0-20190221142849-ba09aa067fcd
 	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
+	github.com/tidwall/btree v0.0.0-20170113224114-9876f1454cf0 // indirect
+	github.com/tidwall/buntdb v1.1.0
+	github.com/tidwall/gjson v1.2.1 // indirect
+	github.com/tidwall/grect v0.0.0-20161006141115-ba9a043346eb // indirect
+	github.com/tidwall/match v1.0.1 // indirect
+	github.com/tidwall/pretty v0.0.0-20190325153808-1166b9ac2b65 // indirect
+	github.com/tidwall/rtree v0.0.0-20180113144539-6cd427091e0e // indirect
+	github.com/tidwall/tinyqueue v0.0.0-20180302190814-1e39f5511563 // indirect
 	golang.org/x/crypto v0.0.0-20190411191339-88737f569e3a // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 	gopkg.in/urfave/cli.v1 v1.20.0 // indirect

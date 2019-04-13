@@ -1,10 +1,15 @@
 package main
 
-import "github.com/odysseyhack/socialtec/node/pkg/market"
+import (
+	"github.com/odysseyhack/socialtec/node/pkg/market"
+	"github.com/odysseyhack/socialtec/node/pkg/store"
+)
 
 func initDependencies(conf *Config) {
 	market.DefaultMarket = market.NewMarket(
 		"ws://0.0.0.0:7545",
 		"536d2fffff9af2dcb66e75782ccf75450246703130b8ab775f1f5893a6cef26a",
 	)
+
+	store.Default = store.NewStore("./safestoreagepath.db")
 }

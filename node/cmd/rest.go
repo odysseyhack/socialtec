@@ -11,12 +11,13 @@ import (
 	"github.com/go-chi/render"
 
 	"github.com/odysseyhack/socialtec/node/cmd/handlers"
+	"github.com/odysseyhack/socialtec/node/pkg/market"
 )
 
 var routes = flag.Bool("routes", false, "Generate api documentation")
 
 func addRouters(r *chi.Mux) {
-	handler := handlers.NewHandler(nil)
+	handler := handlers.NewHandler(market.DefaultMarket)
 
 	// /ping is used as the health check route
 	r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
@@ -61,10 +62,6 @@ type Config struct {
 	Port int
 }
 
-func initDependencies(conf *Config) error {
-	return nil
-}
-
 func main() {
 	flag.Parse()
 	r := chi.NewRouter()
@@ -75,5 +72,7 @@ func main() {
 		fmt.Print(docgen.JSONRoutesDoc(r))
 		return
 	}
-	http.ListenAndServe(":3333", r)
+	if err := http.ListenAndServe(":3333", r); err != nil {
+		fmt.Println("failed listening:", err)
+	}
 }

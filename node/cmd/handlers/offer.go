@@ -22,7 +22,7 @@ func getAllOffers() []market.Offer {
 }
 
 func (handler Handler) NewOffer(w http.ResponseWriter, r *http.Request) {
-	render.JSON(w, r, getAllOffers()[0])
+	render.JSON(w, r, handler.market.AddOffer(getAllOffers()[0]))
 }
 
 func (handler Handler) GetOffers(w http.ResponseWriter, r *http.Request) {

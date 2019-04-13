@@ -77,6 +77,11 @@ contract givo {
       emit chained(to, address_to_id[msg.sender], get_good_id, give_owner, give_good_id);
   }
 
+  //I give (good) (to) you if (owner) gives (con_good) to (getter).
+  function cycle_propagate(uint to, uint good, uint owner, uint con_good, uint getter) public{
+      emit chained(to, getter, good, owner, con_good);
+  }
+
 
 
 }

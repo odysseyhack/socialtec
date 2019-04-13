@@ -1,0 +1,320 @@
+body {
+	background-color: $tertiary;
+}
+
+// --------------------------------------------------
+// Footer
+// --------------------------------------------------
+.footer {
+	padding: $grid-gutter-width;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	background-color: #fff;
+	box-shadow: 0px 0 10px rgba(0,0,0,0.1);
+	z-index: 10;
+
+	.footer__container {
+		@extend .container;
+	}
+
+	.footer__wrapper {
+		@extend .row;
+	}
+
+	.footer-nav {
+		@extend .col;
+	}
+
+	.pagination-bullets {
+		clear: both;
+	}
+
+	.btn-next {
+		@extend .btn-secondary;
+
+		float: right;
+	}
+}
+
+// --------------------------------------------------
+// Header
+// --------------------------------------------------
+.header {
+	width: 100%;
+	height: 65px;
+	position: fixed;
+	box-shadow: 0px 0 10px rgba(0,0,0,0.1);
+	z-index: 10;
+
+	.navbar {
+		color: #fff;
+		background-color: $primary;
+	}
+
+	.navbar-brand {
+		margin-right: 0rem;
+		padding-left: 0;
+	}
+
+	.navbar-menu {
+		color: #fff;
+		background-color: $primary;
+
+		a {
+			color: #fff;
+		}
+	}
+
+	.navbar__container {
+		@extend .container-fluid;
+	}
+
+	.interests {
+		@extend .list--preferences;
+
+		li {
+			border: 1px solid #fff;
+			border-radius: 100%;
+			height: 38px;
+			width: 38px;
+			text-align: center;
+			font-size: 22px;
+			cursor: pointer;
+			display: inline-block;
+			background-size: cover;
+			background-position: center center;
+			transition: $transition-base;
+			user-select: none; 
+
+			&.filled {
+				border: none;
+				color: transparent;
+
+				&:hover, &:active, &:focus {
+					transform: scale(1.5);
+					z-index: 100;
+					background-color: $primary;
+				}
+			}
+		}
+	}
+}
+
+// --------------------------------------------------
+// main
+// --------------------------------------------------
+.main {
+	min-height: 100%;
+	height: 100%;
+
+	.main__container {
+		@extend .container-fluid;
+
+		height: 100%;
+	}
+}
+
+// --------------------------------------------------
+// Offers
+// --------------------------------------------------
+.offers {
+	@extend .row;
+
+	height: 100%;
+	
+	.offer {
+		@extend .col-10;
+	}
+
+	.offer__content {
+		background-size: cover;
+		background-position: center center;
+		display: flex;
+		align-items: flex-end;
+		flex-direction: column;
+		min-height: 100%;
+	}
+
+	.offer__body {
+		margin-top: auto;
+		padding: $grid-gutter-width;
+		padding-right: 20%;
+		color: #fff;
+		width: 100%;
+
+		background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+		background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+	}
+
+	.offer__title {
+		text-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+	}
+
+	.offer__user {
+		margin-bottom: $grid-gutter-width;
+		display: inline-block;
+	}
+
+	.offer__meta {
+		width: 100%;
+		background-color: #fff;
+		padding: $grid-gutter-width;
+		position: relative;
+
+		ul {
+			@extend .list--left;
+
+			margin-right: auto;
+
+			li {
+				margin-right: $grid-gutter-width;
+				text-align: center;
+
+				strong {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.btn-interested {
+		@extend .btn-primary;
+
+		position: absolute;
+		right: 15px;
+		bottom: 45px;
+		width: 60px;
+		height: 60px;
+		padding: 0;
+		box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+
+		span {
+			font-size: 30px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+}
+
+
+// --------------------------------------------------
+// Offer-Form
+// --------------------------------------------------
+.offer-forms {
+	@extend .row;
+
+	justify-content: center;
+	
+	.offer-form {
+		@extend .col;	
+	}
+
+	.offer-form__content {
+		background-color: #fff;
+		padding: $grid-gutter-width;
+	}
+
+	.offer-form__title {
+		small {
+			display: block;
+			font-family: $font-family-base;
+			color: #999;
+			font-size: 1.2rem;
+		}
+	}
+
+	.form-control {
+		margin-bottom: 5px;
+	}
+
+	input, textarea {
+		@extend .form-control;
+	}
+
+	.form-group--upload {
+		@extend .form-group;
+	}
+
+	.form-control--image {
+		@extend .custom-file;
+		@extend .form-control;
+		
+		cursor: pointer !important;
+		width: 40px;
+
+		&:first-child {
+			width: 80px;
+		}
+
+		padding: 0;
+
+		.custom-file-label {
+
+			&:after {
+				display: none;
+			}
+		}
+	}
+}
+
+
+// --------------------------------------------------
+// My-Offers
+// --------------------------------------------------
+.my-offers {
+	@extend .row;
+
+	.my-offer {
+		@extend .col-12;
+		margin-bottom: $grid-gutter-width;
+	}
+
+	.my-offer__content {
+		background-color: #fff;
+		padding-left: 30%;
+		position: relative;
+	}
+
+	.my-offer__image {
+		background-size: cover;
+		background-position: center center;
+		height: 100%;
+		width: 30%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+	}
+
+	.my-offer__body {
+		padding: $grid-gutter-width;
+		position: relative;		
+	}
+
+	.btn-remove-my-offer {
+		@extend .btn-secondary;
+		@extend .btn-danger;
+
+		position: absolute;
+		padding: 0;
+		width: 60px;
+		height: 60px;
+		right: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+
+		span {
+			font-size: 30px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+}

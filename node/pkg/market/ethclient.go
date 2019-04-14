@@ -46,9 +46,6 @@ func NewMarket(netURL string, keyString string, addrString string) Market {
 	}
 	tc := bind.NewKeyedTransactor(key)
 
-	//addrString = Deploy(tc, conn)
-	//log.Printf("Deployed in %s", addrString)
-	//<-time.After(1 * time.Second)
 	addr := common.HexToAddress(addrString)
 	givo, err := NewGivo(addr, conn)
 	if err != nil {

@@ -25,6 +25,7 @@ func main() {
 		fmt.Print(docgen.JSONRoutesDoc(r))
 		return
 	}
+	http.Handle("/static", http.FileServer(http.Dir("static")))
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", *port), r); err != nil {
 		fmt.Println("failed listening:", err)
 	}

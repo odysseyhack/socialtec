@@ -11,9 +11,6 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/main.min.css">
 
-		<!-- Swiper CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-
 		<!-- Google fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
 
@@ -28,26 +25,24 @@
 						<img src="assets/img/loop-logo.png" width="45" height="auto" alt="givo.io">
 					</button>
 
-					<ul id="my-interest" class="interests">
-<!--
+					<ul class="interests">
 						<li class="filled" style="background-image: url(https://source.unsplash.com/80x80/?service);">+</li>
 						<li class="filled" style="background-image: url(https://source.unsplash.com/80x80/?product);">+</li>
 						<li>+</li>
 						<li>+</li>
 						<li>+</li>
--->
 					</ul>
 
 					<div class="navbar-menu collapse navbar-collapse" id="navbar-menu">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active">
-								<a class="nav-link" href="search.html">Explore <span class="sr-only">(current)</span></a>
+							<li class="nav-item">
+								<a class="nav-link" href="search.html">Explore</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="offer.html">My Offer</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="login.html">Sign in</a>
+							<li class="nav-item active">
+								<a class="nav-link" href="login.html">Sign in <span class="sr-only">(current)</span></a>
 							</li>
 						</ul>
 					</div>
@@ -55,99 +50,31 @@
 			</nav>
 		</header>
 
-
 		<main class="main">
 			<div class="main__container">
-				<div class="offers swiper-container">
+				<div class="offer-forms">
 
-					<div class="swiper-wrapper">
-<!--
-						<div class="offer swiper-slide">
-							<div class="offer__content" style="background-image: url(https://source.unsplash.com/750x750/?service);">
-								<div class="offer__body">
-									<h3 class="offer__title">Dolor sitamet</h3>
-									<small class="offer__user">by Elit Numquam</small>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+					<div class="offer-form">
+						<form class="offer-form__content">
+							<h1 class="offer-form__title">Create your profile</h1>
 
-								</div>
-								<div class="offer__meta">
-									<ul>
-										<li>
-											<strong>4</strong>
-											Likes
-										</li>
-										<li>
-											<strong>11</strong>
-											Trades
-										</li>
-										<li>
-											<strong>680</strong>
-											Respect
-										</li>
-									</ul>
-									<button class="btn-interested"><span>+</span></button>
+							<div class="form-group">
+								<input class="form-control--title" type="text" placeholder="Name...">
+								<textarea class="form-control--description" placeholder="Location..." rows="3"></textarea>
+							<div class="form-group">
+
+							<div class="form-group--upload">
+								<h3>Profile picture...</h3>
+								<div class="form-control--image">
+									<input type="file" class="custom-file-input">
+									<label class="custom-file-label" for="customFile">+</label>
 								</div>
 							</div>
-						</div>
 
-						<div class="offer swiper-slide">
-							<div class="offer__content" style="background-image: url(https://source.unsplash.com/750x750/?product);">
-								<div class="offer__body">
-									<h3 class="offer__title">Dolor sitamet</h3>
-									<small class="offer__user">by Elit Numquam</small>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-								</div>
-								<div class="offer__meta">
-									<ul>
-										<li>
-											<strong>4</strong>
-											Likes
-										</li>
-										<li>
-											<strong>11</strong>
-											Trades
-										</li>
-										<li>
-											<strong>680</strong>
-											Respect
-										</li>
-									</ul>
-									<button class="btn-interested"><span>+</span></button>
-								</div>
-							</div>
-						</div>
-
-						<div class="offer swiper-slide">
-							<div class="offer__content" style="background-image: url(https://source.unsplash.com/750x750/?products);">
-								<div class="offer__body">
-									<h3 class="offer__title">Dolor sitamet</h3>
-									<small class="offer__user">by Elit Numquam</small>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-
-								</div>
-								<div class="offer__meta">
-									<ul>
-										<li>
-											<strong>68</strong>
-											Likes
-										</li>
-										<li>
-											<strong>235</strong>
-											Trades
-										</li>
-										<li>
-											<strong>2240</strong>
-											Respect
-										</li>
-									</ul>
-									<button class="btn-interested"><span>+</span></button>
-								</div>
-							</div>
-						</div>
-
+							<button type="submit" class="btn btn-secondary">Login</button>
+						</form>
 					</div>
--->
+
 				</div>
 			</div>
 		</main>
@@ -156,11 +83,10 @@
 			<div class="footer__container">
 				<div class="footer__wrapper">
 					<div class="footer-nav">
-						<a class="btn-next" href="offer.html">next &raquo;</a>
 						<ol class="pagination-bullets">
+							<li></li>
+							<li></li>
 							<li class="active"></li>
-							<li></li>
-							<li></li>
 						</ol>
 					</div>
 				</div>
@@ -209,12 +135,5 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-		<!-- Swiper -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-
-		<!-- Theme JS -->
-		<script src="assets/js/common.js"></script>
-		<script src="assets/js/main_search.js"></script>
 	</body>
 </html>

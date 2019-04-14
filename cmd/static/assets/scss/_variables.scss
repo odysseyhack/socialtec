@@ -5,12 +5,12 @@
 
 // Color system
 
-$primary-color:       #456e74 !default;
-$secondary-color:     #ec5937 !default;
-$tertiary-color:      #d3cabb !default;
+$primary-color:       #34696f !default;
+$secondary-color:     #FC3F26 !default;
+$tertiary-color:      #D3C9BC !default;
 
-$white:    #fff !default;
-$gray-100: #f8f9fa !default;
+$white:    #f2f2f2 !default;
+$gray-100: #adadad !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
@@ -19,7 +19,7 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
-$black:    #313131 !default;
+$black:    #000 !default;
 
 $grays: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -275,7 +275,7 @@ $embed-responsive-aspect-ratios: join(
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans-serif:      'Asap', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:            $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
@@ -301,8 +301,8 @@ $h5-font-size:                $font-size-base * 1 !default;
 $h6-font-size:                $font-size-base !default;
 
 $headings-margin-bottom:      $spacer / 2 !default;
-$headings-font-family:        'Julius Sans One', sans-serif !default;
-$headings-font-weight:        500 !default;
+$headings-font-family:        'Asap', sans-serif !default;
+$headings-font-weight:        700 !default;
 $headings-line-height:        1.2 !default;
 $headings-color:              null !default;
 

@@ -34,4 +34,7 @@ func addRouters(r *chi.Mux) {
 
 	r.Get("/me/interests", handler.MyInterests)
 	r.Get("/me/offers", handler.MyOffers)
+
+	r.Post("/cycle", handler.InitiateCycle)
+	r.Post("/dontLikeAnt/{nodeID}", handler.DontLikeAny)
 }

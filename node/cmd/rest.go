@@ -9,19 +9,23 @@ import (
 	"github.com/go-chi/docgen"
 )
 
-var routes = flag.Bool("routes", false, "Generate api documentation")
+var (
+	routes = flag.Bool("routes", false, "Generate api documentation")
+	key    = flag.String("addr", "536d2fffff9af2dcb66e75782ccf75450246703130b8ab775f1f5893a6cef26a", "Node address")
+	port   = flag.Int("port", 3333, "http port")
+)
 
 func main() {
 	flag.Parse()
 	r := chi.NewRouter()
-	initDependencies(&Config{})
+	initDependencies(&Config{NodeKey: *key})
 	addMiddleWares(r)
 	addRouters(r)
 	if *routes {
 		fmt.Print(docgen.JSONRoutesDoc(r))
 		return
 	}
-	if err := http.ListenAndServe(":3333", r); err != nil {
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", *port), r); err != nil {
 		fmt.Println("failed listening:", err)
 	}
 }

@@ -2,25 +2,19 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
 	"github.com/odysseyhack/socialtec/node/pkg/market"
+	"github.com/odysseyhack/socialtec/node/pkg/store"
 )
 
-func getAllOffers() []market.Offer {
-	var offers []market.Offer
-	for i := 0; i < 10; i++ {
-		offers = append(offers, market.Offer{
-			Name:     "dsasas",
-			Details:  "sasas" + fmt.Sprint(i),
-			ImageURL: "https://via.placeholder.com/150",
-		})
-	}
-	return offers
+type Offer struct {
+	market.Offer    `json:"offer"`
+	market.Interest `json:"interest"`
 }
 
 func (handler Handler) NewOffer(w http.ResponseWriter, r *http.Request) {
@@ -36,17 +30,37 @@ func (handler Handler) NewOffer(w http.ResponseWriter, r *http.Request) {
 		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
 		return
 	}
+	handler.addMyOffer(offer)
 	render.JSON(w, r, offer)
 }
 
 func (handler Handler) GetOffers(w http.ResponseWriter, r *http.Request) {
-	offers, err := handler.market.GetAvailableOffers(0)
+	offers, err := handler.market.GetAvailableOffers()
 	if err != nil {
 		render.Status(r, http.StatusInternalServerError)
 		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
 		return
 	}
-	render.JSON(w, r, offers)
+
+	intrestedParties := make(map[int64]market.Interest)
+	if err := handler.store.Get("intrestedParties", &intrestedParties); err != nil && err != store.ErrorNotFound {
+		log.Printf("error getting refs")
+		return
+	}
+
+	var priorityOffers, normalOffers []Offer
+	for _, offer := range offers {
+		if interest, ok := intrestedParties[offer.Node]; ok {
+			priorityOffers = append(priorityOffers, Offer{Offer: offer, Interest: interest})
+		}
+		normalOffers = append(normalOffers, offer{Offer: offer})
+	}
+
+	if err := store.Default.Set("intrestedParties", []int64{}); err != nil && err != store.ErrorNotFound {
+		log.Printf("error setting refs")
+		return
+	}
+	render.JSON(w, r, append(priorityOffers, normalOffers...))
 }
 
 func (handler Handler) DeleteOffer(w http.ResponseWriter, r *http.Request) {
@@ -62,6 +76,13 @@ func (handler Handler) DeleteOffer(w http.ResponseWriter, r *http.Request) {
 }
 
 func (handler Handler) AddInterest(w http.ResponseWriter, r *http.Request) {
+	var offer market.Offer
+	defer r.Body.Close()
+	if err := json.NewDecoder(r.Body).Decode(&offer); err != nil {
+		render.Status(r, http.StatusBadRequest)
+		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
+		return
+	}
 	offerID := getOfferID(r)
 
 	err := handler.market.ShowIntrest(offerID)
@@ -70,6 +91,8 @@ func (handler Handler) AddInterest(w http.ResponseWriter, r *http.Request) {
 		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
 		return
 	}
+	offer.ID = offerID
+	handler.addMyIntrest(offer)
 	render.JSON(w, r, map[string]interface{}{"success": true})
 }
 
@@ -85,7 +108,48 @@ func (handler Handler) DeleteInterest(w http.ResponseWriter, r *http.Request) {
 	render.JSON(w, r, map[string]interface{}{"success": true})
 }
 
+func (handler Handler) InitiateCycle(w http.ResponseWriter, r *http.Request) {
+	var offer Offer
+	defer r.Body.Close()
+	if err := json.NewDecoder(r.Body).Decode(&offer); err != nil {
+		render.Status(r, http.StatusBadRequest)
+		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
+		return
+	}
+
+	if err := handler.market.SendFormChain(
+		offer.Offer.Node,
+		offer.Offer.ID,
+		offer.Interest.What,
+		offer.Interest.Who); err != nil {
+		render.Status(r, http.StatusBadRequest)
+		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
+		return
+	}
+
+	render.JSON(w, r, map[string]interface{}{"success": true})
+}
+
+//DontLikeAny serves  /dont_likeany/:nodeID
+func (handler Handler) DontLikeAny(w http.ResponseWriter, r *http.Request) {
+	nodeID := getInt(r, "nodeID")
+	var offers []market.Offer
+	if err := handler.store.Get("my_interests", &offers); err != nil && err != store.ErrorNotFound {
+		render.Status(r, http.StatusInternalServerError)
+		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
+		return
+	}
+	for _, offer := range offers {
+		go handler.market.ReferInterest(offer.ID, nodeID)
+	}
+	render.JSON(w, r, map[string]interface{}{"success": true})
+}
+
+func getInt(r *http.Request, key string) int64 {
+	intVal, _ := strconv.ParseInt(chi.URLParam(r, key), 10, 64)
+	return intVal
+}
+
 func getOfferID(r *http.Request) int64 {
-	offerID, _ := strconv.ParseInt(chi.URLParam(r, "offerID"), 10, 64)
-	return offerID
+	return getInt(r, "offerID")
 }

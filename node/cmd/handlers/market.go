@@ -13,8 +13,8 @@ import (
 )
 
 type Offer struct {
-	market.Offer    `json:"offer"`
-	market.Interest `json:"interest"`
+	market.Offer     `json:"offer"`
+	*market.Interest `json:"interest,omitempty"`
 }
 
 func (handler Handler) NewOffer(w http.ResponseWriter, r *http.Request) {
@@ -44,20 +44,20 @@ func (handler Handler) GetOffers(w http.ResponseWriter, r *http.Request) {
 
 	intrestedParties := make(map[int64]market.Interest)
 	if err := handler.store.Get("intrestedParties", &intrestedParties); err != nil && err != store.ErrorNotFound {
-		log.Printf("error getting refs")
+		log.Printf("error getting interested parties. err:%+v", err)
 		return
 	}
 
 	var priorityOffers, normalOffers []Offer
 	for _, offer := range offers {
 		if interest, ok := intrestedParties[offer.Node]; ok {
-			priorityOffers = append(priorityOffers, Offer{Offer: offer, Interest: interest})
+			priorityOffers = append(priorityOffers, Offer{Offer: offer, Interest: &interest})
 		}
-		normalOffers = append(normalOffers, offer{Offer: offer})
+		normalOffers = append(normalOffers, Offer{Offer: offer})
 	}
 
-	if err := store.Default.Set("intrestedParties", []int64{}); err != nil && err != store.ErrorNotFound {
-		log.Printf("error setting refs")
+	if err := store.Default.Set("intrestedParties", make(map[int64]market.Interest)); err != nil && err != store.ErrorNotFound {
+		log.Printf("error setting interested parties. Err:%+v", err)
 		return
 	}
 	render.JSON(w, r, append(priorityOffers, normalOffers...))

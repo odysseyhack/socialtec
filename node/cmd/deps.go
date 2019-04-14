@@ -26,6 +26,6 @@ func initDependencies(conf *Config) {
 	// 	"8678dc180d0a126d14e861a1afe9750071f0adfa495ac3f06355680595a65283",
 	// 	"0xB91fE4dd0c31CA4366c7e4bD8d723c1d278BAE66",
 	// )
-	store.Default = store.NewStore(fmt.Sprintf("./%s.db", conf.NodeKey[:10]))
+	store.Default = store.NewStore(fmt.Sprintf("./%s.db", conf.NodeKey[:9]))
 	go market.DefaultMarket.ListenBroadcasts(store.Default)
 }

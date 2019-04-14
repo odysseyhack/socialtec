@@ -96,7 +96,7 @@ func (c *client) handleInterested(event *GivoIntrested) {
 
 	intrestedParties := make(map[int64]Interest)
 	if err := store.Default.Get("intrestedParties", &intrestedParties); err != nil && err != store.ErrorNotFound {
-		log.Printf("error getting refs")
+		log.Printf("error getting inteterested parties", err)
 		return
 	}
 	intrestedParties[event.From.Int64()] = Interest{Who: event.From.Int64(), What: event.GoodId.Int64()}

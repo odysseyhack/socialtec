@@ -25,12 +25,14 @@
 						<img src="assets/img/loop-logo.png" width="45" height="auto" alt="givo.io">
 					</button>
 
-					<ul class="interests">
-						<li class="filled" style="background-image: url(https://source.unsplash.com/80x80/?service);">+</li>
-						<li class="filled" style="background-image: url(https://source.unsplash.com/80x80/?product);">+</li>
-						<li>+</li>
-						<li>+</li>
-						<li>+</li>
+					<ul id="my-interest" class="interests">
+						<!--
+						<li id="my-intrest-1" onclick="delete_intrest(this.id)" class="filled" style="background-image: url(https://source.unsplash.com/80x80/?service);">+</li>
+						<li id="my-intrest-2" onclick="delete_intrest(this.id)" class="filled" style="background-image: url(https://source.unsplash.com/80x80/?product);">+</li>
+						<li id="my-intrest-3" onclick="delete_intrest(this.id)">+</li>
+						<li id="my-intrest-4" onclick="delete_intrest(this.id)">+</li>
+						<li id="my-intrest-5" onclick="delete_intrest(this.id)">+</li>
+					-->
 					</ul>
 
 					<div class="navbar-menu collapse navbar-collapse" id="navbar-menu">
@@ -52,29 +54,7 @@
 
 		<main class="main">
 			<div class="main__container">
-				<div class="my-offers">
-
-					<div class="my-offer">
-						<div class="my-offer__content">
-							<div class="my-offer__image" style="background-image: url(https://source.unsplash.com/700x700/?service);"></div>
-							<div class="my-offer__body">
-								<h3 class="my-offer__title">Shoes</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, nam?</p>
-								<a class="btn-remove-my-offer"><span>X</span></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="my-offer">
-						<div class="my-offer__content">
-							<div class="my-offer__image" style="background-image: url(https://source.unsplash.com/700x700/?product);"></div>
-							<div class="my-offer__body">
-								<h3 class="my-offer__title">Something</h3>
-								<p>Provident, nam? Lorem ipsum dolor sit amet adipisicing elit.</p>
-								<a class="btn-remove-my-offer"><span>X</span></a>
-							</div>
-						</div>
-					</div>
+				<div id="my-offers" class="my-offers">
 
 				</div>
 
@@ -178,5 +158,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<script src="assets/js/main_offer.js"></script>
+		<script src="assets/js/common.js"></script>
 	</body>
 </html>

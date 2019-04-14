@@ -2,6 +2,13 @@
   "router": {
     "middlewares": [
       {
+        "pkg": "github.com/rs/cors",
+        "func": "(*Cors).Handler-fm",
+        "comment": "Handler apply the CORS specification on the request, and add relevant CORS headers\nas necessary.\n",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/rs/cors@v1.6.0/cors.go",
+        "line": 190
+      },
+      {
         "pkg": "github.com/go-chi/chi/middleware",
         "func": "RequestID",
         "comment": "RequestID is a middleware that injects a request ID into the context of each\nrequest. A request ID is a string of the form \"host.example.com/random-0001\",\nwhere \"random\" is a base62 random string that uniquely identifies this go\nprocess, and where the last number is an atomically incremented request\ncounter.\n",
@@ -39,27 +46,77 @@
       }
     ],
     "routes": {
-      "/interest/:offer_id": {
+      "/cycle": {
+        "handlers": {
+          "POST": {
+            "middlewares": [],
+            "method": "POST",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.InitiateCycle-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 91
+          }
+        }
+      },
+      "/dontLikeAnt/{nodeID}": {
+        "handlers": {
+          "POST": {
+            "middlewares": [],
+            "method": "POST",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.DontLikeAny-fm",
+            "comment": "DontLikeAny serves  /dont_likeany/:nodeID\n",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 114
+          }
+        }
+      },
+      "/interest/{offerID}": {
         "handlers": {
           "DELETE": {
             "middlewares": [],
             "method": "DELETE",
-            "pkg": "",
-            "func": "main.addRouters.func4",
-            "comment": "DELETE /interest/:product_id  remove intrest in an item\n",
-            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 40,
-            "anonymous": true
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.DeleteInterest-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 79
           },
           "PUT": {
             "middlewares": [],
             "method": "PUT",
-            "pkg": "",
-            "func": "main.addRouters.func3",
-            "comment": "PUT /interest registers intrest for an item\n",
-            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 35,
-            "anonymous": true
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.AddInterest-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 58
+          }
+        }
+      },
+      "/me/interests": {
+        "handlers": {
+          "GET": {
+            "middlewares": [],
+            "method": "GET",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.MyInterests-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/local.go",
+            "line": 22
+          }
+        }
+      },
+      "/me/offers": {
+        "handlers": {
+          "GET": {
+            "middlewares": [],
+            "method": "GET",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.MyOffers-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/local.go",
+            "line": 12
           }
         }
       },
@@ -68,21 +125,33 @@
           "GET": {
             "middlewares": [],
             "method": "GET",
-            "pkg": "",
-            "func": "main.addRouters.func2",
-            "comment": "GET /offers returns all the available offers\n",
-            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 27,
-            "anonymous": true
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.GetOffers-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 36
           },
           "POST": {
             "middlewares": [],
             "method": "POST",
             "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
-            "func": "Handler.NewOffers-fm",
+            "func": "Handler.NewOffer-fm",
             "comment": "",
-            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/offer.go",
-            "line": 18
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 19
+          }
+        }
+      },
+      "/offers/{offerID}": {
+        "handlers": {
+          "DELETE": {
+            "middlewares": [],
+            "method": "DELETE",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.DeleteOffer-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 46
           }
         }
       },
@@ -94,8 +163,8 @@
             "pkg": "",
             "func": "main.addRouters.func1",
             "comment": "/ping is used as the health check route\n",
-            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/rest.go",
-            "line": 22,
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/routes.go",
+            "line": 16,
             "anonymous": true
           }
         }

@@ -84,4 +84,3 @@ contract givo {
 
 
 }
-

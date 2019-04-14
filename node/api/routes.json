@@ -1,0 +1,174 @@
+{
+  "router": {
+    "middlewares": [
+      {
+        "pkg": "github.com/rs/cors",
+        "func": "(*Cors).Handler-fm",
+        "comment": "Handler apply the CORS specification on the request, and add relevant CORS headers\nas necessary.\n",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/rs/cors@v1.6.0/cors.go",
+        "line": 190
+      },
+      {
+        "pkg": "github.com/go-chi/chi/middleware",
+        "func": "RequestID",
+        "comment": "RequestID is a middleware that injects a request ID into the context of each\nrequest. A request ID is a string of the form \"host.example.com/random-0001\",\nwhere \"random\" is a base62 random string that uniquely identifies this go\nprocess, and where the last number is an atomically incremented request\ncounter.\n",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/go-chi/chi@v4.0.2+incompatible/middleware/request_id.go",
+        "line": 63
+      },
+      {
+        "pkg": "github.com/go-chi/chi/middleware",
+        "func": "Logger",
+        "comment": "Logger is a middleware that logs the start and end of each request, along\nwith some useful data about what was requested, what the response status was,\nand how long it took to return. When standard output is a TTY, Logger will\nprint in color, otherwise it will print in black and white. Logger prints a\nrequest ID if one is provided.\n\nAlternatively, look at https://github.com/pressly/lg and the `lg.RequestLogger`\nmiddleware pkg.\n",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/go-chi/chi@v4.0.2+incompatible/middleware/logger.go",
+        "line": 30
+      },
+      {
+        "pkg": "github.com/go-chi/chi/middleware",
+        "func": "Recoverer",
+        "comment": "Recoverer is a middleware that recovers from panics, logs the panic (and a\nbacktrace), and returns a HTTP 500 (Internal Server Error) status if\npossible. Recoverer prints a request ID if one is provided.\n\nAlternatively, look at https://github.com/pressly/lg middleware pkgs.\n",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/go-chi/chi@v4.0.2+incompatible/middleware/recoverer.go",
+        "line": 18
+      },
+      {
+        "pkg": "github.com/go-chi/chi/middleware",
+        "func": "URLFormat",
+        "comment": "URLFormat is a middleware that parses the url extension from a request path and stores it\non the context as a string under the key `middleware.URLFormatCtxKey`. The middleware will\ntrim the suffix from the routing path and continue routing.\n\nRouters should not include a url parameter for the suffix when using this middleware.\n\nSample usage.. for url paths: `/articles/1`, `/articles/1.json` and `/articles/1.xml`\n\n func routes() http.Handler {\n   r := chi.NewRouter()\n   r.Use(middleware.URLFormat)\n\n   r.Get(\"/articles/{id}\", ListArticles)\n\n   return r\n }\n\n func ListArticles(w http.ResponseWriter, r *http.Request) {\n\t  urlFormat, _ := r.Context().Value(middleware.URLFormatCtxKey).(string)\n\n\t  switch urlFormat {\n\t  case \"json\":\n\t  \trender.JSON(w, r, articles)\n\t  case \"xml:\"\n\t  \trender.XML(w, r, articles)\n\t  default:\n\t  \trender.JSON(w, r, articles)\n\t  }\n}\n",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/go-chi/chi@v4.0.2+incompatible/middleware/url_format.go",
+        "line": 47
+      },
+      {
+        "pkg": "github.com/go-chi/render",
+        "func": "SetContentType.func1",
+        "comment": "",
+        "file": "/Users/sarath.pillai/gopath/pkg/mod/github.com/go-chi/render@v1.0.1/content_type.go",
+        "line": 49,
+        "anonymous": true
+      }
+    ],
+    "routes": {
+      "/cycle": {
+        "handlers": {
+          "POST": {
+            "middlewares": [],
+            "method": "POST",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.InitiateCycle-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 91
+          }
+        }
+      },
+      "/dontLikeAnt/{nodeID}": {
+        "handlers": {
+          "POST": {
+            "middlewares": [],
+            "method": "POST",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.DontLikeAny-fm",
+            "comment": "DontLikeAny serves  /dont_likeany/:nodeID\n",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 114
+          }
+        }
+      },
+      "/interest/{offerID}": {
+        "handlers": {
+          "DELETE": {
+            "middlewares": [],
+            "method": "DELETE",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.DeleteInterest-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 79
+          },
+          "PUT": {
+            "middlewares": [],
+            "method": "PUT",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.AddInterest-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 58
+          }
+        }
+      },
+      "/me/interests": {
+        "handlers": {
+          "GET": {
+            "middlewares": [],
+            "method": "GET",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.MyInterests-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/local.go",
+            "line": 22
+          }
+        }
+      },
+      "/me/offers": {
+        "handlers": {
+          "GET": {
+            "middlewares": [],
+            "method": "GET",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.MyOffers-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/local.go",
+            "line": 12
+          }
+        }
+      },
+      "/offers": {
+        "handlers": {
+          "GET": {
+            "middlewares": [],
+            "method": "GET",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.GetOffers-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 36
+          },
+          "POST": {
+            "middlewares": [],
+            "method": "POST",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.NewOffer-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 19
+          }
+        }
+      },
+      "/offers/{offerID}": {
+        "handlers": {
+          "DELETE": {
+            "middlewares": [],
+            "method": "DELETE",
+            "pkg": "github.com/odysseyhack/socialtec/node/cmd/handlers",
+            "func": "Handler.DeleteOffer-fm",
+            "comment": "",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/handlers/market.go",
+            "line": 46
+          }
+        }
+      },
+      "/ping": {
+        "handlers": {
+          "GET": {
+            "middlewares": [],
+            "method": "GET",
+            "pkg": "",
+            "func": "main.addRouters.func1",
+            "comment": "/ping is used as the health check route\n",
+            "file": "/Users/sarath.pillai/projects/socialtec/node/cmd/routes.go",
+            "line": 16,
+            "anonymous": true
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ var Default Store
 func NewStore(filename string) Store {
 	db, err := newDB(filename)
 	if err != nil {
-		log.Fatalf("Failed initializing storage. Err:%+v", err)
+		log.Fatalf("Failed initializing storage. Filename:%s Err:%+v", filename, err)
 	}
 	return db
 }

@@ -31,7 +31,6 @@ func (c *client) ListenBroadcasts(store store.Store) {
 		case event := <-chain:
 			c.handleChained(event)
 		case gInterest := <-interested:
-			fmt.Println("Handle Interesreted")
 			c.handleInterested(gInterest)
 		case gNoInterest := <-notInterested:
 			fmt.Println("no-interest", gNoInterest)
@@ -96,7 +95,7 @@ func (c *client) handleInterested(event *GivoIntrested) {
 
 	intrestedParties := make(map[int64]Interest)
 	if err := store.Default.Get("intrestedParties", &intrestedParties); err != nil && err != store.ErrorNotFound {
-		log.Printf("error getting inteterested parties", err)
+		log.Printf("error getting interested parties", err)
 		return
 	}
 	intrestedParties[event.From.Int64()] = Interest{Who: event.From.Int64(), What: event.GoodId.Int64()}
@@ -181,7 +180,7 @@ func (c *client) handleChained(event *GivoChained) {
 	}
 	referred, ok := refs[event.IfOwner.Int64()]
 	if !ok {
-		log.Println("Bad cycle owner not in referred map", referred, c.ID, event.IfOwner)
+		log.Println("Bad cycle owner not in referred map", referred, c.ID(), event.IfOwner)
 		return
 	}
 

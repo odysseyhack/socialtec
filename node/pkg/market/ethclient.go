@@ -45,7 +45,6 @@ func NewMarket(netURL string, keyString string, addrString string) Market {
 		log.Fatalf("Something went wrong creating ECDSA key: %v", err)
 	}
 	tc := bind.NewKeyedTransactor(key)
-
 	addr := common.HexToAddress(addrString)
 	givo, err := NewGivo(addr, conn)
 	if err != nil {
@@ -59,10 +58,7 @@ func NewMarket(netURL string, keyString string, addrString string) Market {
 	}
 	log.Println("Successfully connected to ethereum network")
 
-	nodeID, _ := session.AddressToId(tc.From)
-
 	return &client{
-		id:           nodeID.Int64(),
 		keyString:    keyString,
 		contractAddr: addr,
 		session:      &session,
@@ -83,8 +79,10 @@ func (c *client) LoadAccout() {
 
 func (c *client) ID() int64 {
 	if c.id != 0 {
-		nodeID, _ := c.session.AddressToId(c.session.TransactOpts.From)
-		c.id = nodeID.Int64()
+		nodeID, err := c.session.AddressToId(c.session.TransactOpts.From)
+		if err == nil && nodeID != nil {
+			c.id = nodeID.Int64()
+		}
 	}
 	return c.id
 }
@@ -148,7 +146,6 @@ func (c *client) ReferInterest(offerID int64, referID int64) error {
 	return nil
 }
 
-// to, get_good_id,  give_owner, give_good_id
 func (c *client) SendFormChain(ifOwner int64, ifGood int64, thenGood int64, thenReceiver int64) error {
 	_, err := c.session.CycleFormed(
 		big.NewInt(ifOwner),

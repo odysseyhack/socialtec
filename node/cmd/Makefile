@@ -8,6 +8,10 @@ BINARY_DIR=$(CURRENT_DIR)/bin
 BINARY_NAME=$(BINARY_DIR)/givo
 API_DIR=$(CURRENT_DIR)/../api
 
+
+PORT=3333
+KEY=536d2fffff9af2dcb66e75782ccf75450246703130b8ab775f1f5893a6cef26a
+
 all: test build
 
 build:  $(BUILD_DIR)
@@ -21,7 +25,7 @@ clean:
 	rm -f $(BINARY_NAME)
 
 run: build
-	$(BINARY_NAME)
+	$(BINARY_NAME) -port $(PORT) -key $(KEY)
 
 doc: build
 	$(BINARY_NAME) -routes > $(API_DIR)/routes.json

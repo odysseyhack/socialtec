@@ -105,7 +105,8 @@ func (handler Handler) DeleteInterest(w http.ResponseWriter, r *http.Request) {
 		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
 		return
 	}
-	render.JSON(w, r, map[string]interface{}{"success": true})
+	handler.removeMyIntrest(offerID)
+	render.JSON(w, r, map[string]interface{}{"success": true, "offer_id": offerID})
 }
 
 func (handler Handler) InitiateCycle(w http.ResponseWriter, r *http.Request) {
@@ -126,6 +127,7 @@ func (handler Handler) InitiateCycle(w http.ResponseWriter, r *http.Request) {
 		render.JSON(w, r, map[string]interface{}{"error": err.Error()})
 		return
 	}
+	handler.removeMyOffer(offer.Offer.ID)
 
 	render.JSON(w, r, map[string]interface{}{"success": true})
 }

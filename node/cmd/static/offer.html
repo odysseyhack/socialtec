@@ -11,9 +11,6 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/main.min.css">
 
-		<!-- Swiper CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-
 		<!-- Google fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
 
@@ -29,22 +26,22 @@
 					</button>
 
 					<ul id="my-interest" class="interests">
-<!--
-						<li class="filled" style="background-image: url(https://source.unsplash.com/80x80/?service);">+</li>
-						<li class="filled" style="background-image: url(https://source.unsplash.com/80x80/?product);">+</li>
-						<li>+</li>
-						<li>+</li>
-						<li>+</li>
--->
+						<!--
+						<li id="my-intrest-1" onclick="delete_intrest(this.id)" class="filled" style="background-image: url(https://source.unsplash.com/80x80/?service);">+</li>
+						<li id="my-intrest-2" onclick="delete_intrest(this.id)" class="filled" style="background-image: url(https://source.unsplash.com/80x80/?product);">+</li>
+						<li id="my-intrest-3" onclick="delete_intrest(this.id)">+</li>
+						<li id="my-intrest-4" onclick="delete_intrest(this.id)">+</li>
+						<li id="my-intrest-5" onclick="delete_intrest(this.id)">+</li>
+					-->
 					</ul>
 
 					<div class="navbar-menu collapse navbar-collapse" id="navbar-menu">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active">
-								<a class="nav-link" href="search.html">Explore <span class="sr-only">(current)</span></a>
-							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="offer.html">My Offer</a>
+								<a class="nav-link" href="search.html">Explore</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="offer.html">My Offer <span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="login.html">Sign in</a>
@@ -55,12 +52,49 @@
 			</nav>
 		</header>
 
-
 		<main class="main">
 			<div class="main__container">
-				<div class="offers swiper-container">
+				<div id="my-offers" class="my-offers">
 
-					<div class="swiper-wrapper">
+				</div>
+
+				<div class="offer-forms">
+
+					<div class="offer-form">
+						<form class="offer-form__content">
+							<h1 class="offer-form__title">What can you offer? <small>(equal in value to one hour)</small></h1>
+
+							<div class="form-group">
+								<input class="form-control--title" type="text" id="offer-title" placeholder="Title..." >
+								<textarea class="form-control--description" id="offer-description" placeholder="Description..." rows="3"></textarea>
+								<input class="form-control--location" type="text" placeholder="Location...">
+							<div class="form-group">
+
+							<div class="form-group--upload">
+								<h3>Images...</h3>
+								<div class="form-control--image">
+									<input type="file" class="custom-file-input">
+									<label class="custom-file-label" for="customFile">+</label>
+								</div>
+								<div class="form-control--image">
+									<input type="file" class="custom-file-input">
+									<label class="custom-file-label" for="customFile">+</label>
+								</div>
+								<div class="form-control--image">
+									<input type="file" class="custom-file-input">
+									<label class="custom-file-label" for="customFile">+</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<input class="form-control--tags" type="text" placeholder="Tags...">
+								<input class="form-control--category" type="text" placeholder="Category...">
+							</div>
+
+							<div class="btn btn-secondary" onclick="add_offer()">Submit</div>
+						</form>
+					</div>
+
 				</div>
 			</div>
 		</main>
@@ -69,10 +103,10 @@
 			<div class="footer__container">
 				<div class="footer__wrapper">
 					<div class="footer-nav">
-						<a class="btn-next" href="offer.html">next &raquo;</a>
+						<a class="btn-next" href="login.html">next &raquo;</a>
 						<ol class="pagination-bullets">
-							<li class="active"></li>
 							<li></li>
+							<li class="active"></li>
 							<li></li>
 						</ol>
 					</div>
@@ -118,16 +152,12 @@
 	</div>
 </div>
 
+		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-		<!-- Swiper -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-
-		<!-- Theme JS -->
+		<script src="assets/js/main_offer.js"></script>
 		<script src="assets/js/common.js"></script>
-		<script src="assets/js/main_search.js"></script>
 	</body>
 </html>

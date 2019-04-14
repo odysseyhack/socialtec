@@ -86,7 +86,8 @@ function delete_intrest(id) {
 
 
 function loadOffers() {
-  $.get( URL+"/offers", function(data, status){
+  console.log(URL+"/offers")
+  $.get(URL+"/offers", function(data, status){
         Data = data;
         console.log(data)
         for( cntr = 0;cntr<data.length; cntr++){

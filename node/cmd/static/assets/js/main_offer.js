@@ -1,8 +1,7 @@
-var URL = "http:" + window.location.host + "/static/"
-
+var URL = "http://" + window.location.host 
 function load_my_offers() {
   $.ajax({
-    url: URL + "/me/offers",
+    url:URL +  "/me/offers",
     type: "GET",
     dataType: 'json',
     contentType: 'application/json',
@@ -36,7 +35,7 @@ function add_offer() {
   listMyOffer(offer_data);
   console.log(offer_data);
   $.ajax({
-    url: URL + "/offers",
+    url:  URL +  "/offers",
     type: "POST",
     data: JSON.stringify(offer_data),
     dataType: 'json',
@@ -49,6 +48,8 @@ function add_offer() {
 }
 
 (function($) {
+  URL = "http://" + window.location.host
+  console.log('url', URL)
   // Document Ready
   $(document).ready(function() {
     load_my_offers();

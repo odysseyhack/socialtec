@@ -46,3 +46,33 @@ func (handler Handler) addMyIntrest(offer market.Offer) error {
 	offers = append(offers, offer)
 	return handler.store.Set("my_interests", offers)
 }
+
+func (handler Handler) removeMyIntrest(offerID int64) error {
+	var offers []market.Offer
+	if err := handler.store.Get("my_interests", &offers); err != nil && err != store.ErrorNotFound {
+		return err
+	}
+	var done []market.Offer
+
+	for _, offer := range offers {
+		if offer.ID != offerID {
+			done = append(done, offer)
+		}
+	}
+	return handler.store.Set("my_interests", done)
+}
+
+func (handler Handler) removeMyOffer(offerID int64) error {
+	var offers []market.Offer
+	if err := handler.store.Get("my_offers", &offers); err != nil && err != store.ErrorNotFound {
+		return err
+	}
+	var done []market.Offer
+
+	for _, offer := range offers {
+		if offer.ID != offerID {
+			done = append(done, offer)
+		}
+	}
+	return handler.store.Set("my_offers", done)
+}

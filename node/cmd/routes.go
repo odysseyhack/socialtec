@@ -40,7 +40,7 @@ func addRouters(r *chi.Mux) {
 	r.Get("/me/offers", handler.MyOffers)
 
 	r.Post("/cycle", handler.InitiateCycle)
-	r.Post("/dontLikeAnt/{nodeID}", handler.DontLikeAny)
+	r.Post("/dontLikeAny/{nodeID}", handler.DontLikeAny)
 
 	workDir, _ := os.Getwd()
 	fmt.Println("working dir", workDir)

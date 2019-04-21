@@ -19,15 +19,14 @@ contract givo {
   mapping (address => uint) public address_to_id;
   Good[] public all_goods;
 
-  event intrested(uint to, uint good_id, uint from);
-  event not_intrested(uint to, uint good_id, uint from);
-  event refer(uint to, uint good_id, uint from, uint refer_id);
-  event deleted(uint owner, uint good_id);
-  event chained(uint if_owner, uint if_good, uint if_receiver, uint then_good, uint then_receiver);
+  event not_intrested(uint indexed to, uint good_id, uint from);
+  event refer(uint indexed to, uint referer_interest, uint referer, uint reference_id);
+  event deleted(uint owner, uint indexed good_id);
+  event chained(uint if_owner, uint if_good, uint if_receiver, uint then_good, uint indexed then_receiver);
 
   function create_offer(string memory name, string memory ipfs_image, string memory ipfs_details) public returns (uint good_id) {
-    uint x = address_to_id[msg.sender];
-    if (x == 0) {
+    uint id = address_to_id[msg.sender];
+    if (id == 0) {
         address_to_id[msg.sender] = node_cntr;
         node_cntr=node_cntr+1;
     }
@@ -40,14 +39,13 @@ contract givo {
     return good_id;
   }
 
-  function get_id() public returns (uint) {
-    uint x = address_to_id[msg.sender];
-    if (x == 0) {
+  function assign_id() external {
+    uint id = address_to_id[msg.sender];
+    if (id == 0) {
         address_to_id[msg.sender] = node_cntr;
-        x = node_cntr;
+        id = node_cntr;
         node_cntr=node_cntr+1;
     }
-    return x;
   }
 
   function delete_offer(uint good_id) public{
@@ -68,27 +66,28 @@ contract givo {
       return my_offers;
   }
 
-  function add_intrest(uint good_id) public {
-      uint node_id = all_goods[good_id].node;
-      emit intrested(node_id, good_id, address_to_id[msg.sender]);
+  function add_interest(uint interested_good_id) public {
+      uint owner_interested_good = all_goods[interested_good_id].node;
+      emit refer(owner_interested_good, interested_good_id, address_to_id[msg.sender], address_to_id[msg.sender]);
   }
 
-  function delete_intrest(uint good_id) public {
+  function delete_interest(uint good_id) public {
       uint node_id = all_goods[good_id].node;
-      emit intrested(node_id, good_id, address_to_id[msg.sender]);
+      emit not_intrested(node_id, good_id, address_to_id[msg.sender]);
   }
 
-  function refer_intrest(uint good_id, uint refer_id) public {
-      uint node_id = all_goods[good_id].node;
-      emit refer(node_id, good_id, address_to_id[msg.sender], refer_id);
+  function refer_interest(uint intrested_good_id, uint reference_id) public {
+        uint owner_interested_good = all_goods[intrested_good_id].node;
+        emit refer(owner_interested_good, intrested_good_id, address_to_id[msg.sender], reference_id);
+
   }
 
   function cycle_formed(uint if_owner, uint if_good,  uint then_good, uint then_receiver) public{
-      emit chained(if_owner, if_good, address_to_id[msg.sender], then_good,then_receiver );
+      emit chained(if_owner, if_good, address_to_id[msg.sender], then_good,then_receiver);
   }
-  
+
   function cycle_propagate(uint if_owner, uint if_good,uint if_receiver,  uint then_good, uint then_receiver) public{
-      emit chained(if_owner, if_good, if_receiver, then_good,then_receiver );
+      emit chained(if_owner, if_good, if_receiver, then_good,then_receiver);
   }
 
 }

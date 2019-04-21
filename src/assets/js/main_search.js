@@ -1,83 +1,100 @@
-
+/*jshint esversion: 8 */
 var Data = [];
-var cntr;
 
+function item_disliked(cntr) {
+  offer = Data[cntr];
+  $("#card-" + cntr).remove();
 
-function item_disliked(idx) {
-  offer=Data[idx];
-  $("#card-"+offer.offer.id).remove();
-
-  if (offer.interest == null) {
-    return
+  if (offer.is_reference == false) {
+    return;
   }
 
-  if(idx >= Data.length) {
-    if (idx.interest != null) {
-     sendRefer(offer)
-  }
-  return
-}
-
-  next = Data[idx+1]
-  if (next.interest != null && next.interest.who != offer.interest.who) {
-    sendRefer(offer)
-  }
-  return
-}
-
-
-
-function sendRefer(offer) {
-  $.ajax({
-    url: URL+'/dontLikeAny/'+offer.interest.who,
-    type: 'POST',
-    dataType: 'json',
-    contentType: 'application/json',
-    crossDomain: true,
-    success: function(result) {
-      console.log(result);
+  if (cntr == (Data.length-1)) {
+    if (offer.is_reference == true) {
+      send_my_interest_reference(offer);
+      Storage.set_last_block("refer", offer.block_number+1);
     }
+    return;
+  }
+
+  next_offer = Data[cntr + 1];
+  if (next_offer.owner != offer.owner) {
+    console.log("Done");
+    send_my_interest_reference(offer);
+    Storage.set_last_block("refer", offer.block_number+1);
+  }
+  return;
+}
+
+function send_interest(my_interest, offer){
+  App.contract.refer_intrest(my_interest, offer.owner,
+    App.options,
+    function(err, result) {
+      if (!err) {
+        console.log('intrest refer:');
+        console.log(result);
+      } else {
+        console.log(err);
+      }
+    });
+}
+
+function send_my_interests_reference(offer) {
+  my_interests = Storage.get_my_interests();
+  my_interests.forEach(function(interest){
+      refer_interest(interest, offer.owner);
   });
 }
 
-function Popup(offer,myOfferId) {
-  $("#model-offer-name").text(offer.offer.name)
-  $("#model-offer-details").text(offer.offer.details)
-  $("#match-found").show()
+function refer_interest(interested_good_id, reference_id){
+  App.contract.refer_intrest(interested_good_id, reference_id,
+    App.options,
+    function(err, result) {
+      if (!err) {
+        console.log('intrest added:');
+        console.log(result);
+      } else {
+        console.log(err);
+      }
+    });
 }
 
-function item_liked(idx) {
-  offer= Data[idx];
-  $("#card-"+offer.offer.id).remove();
-  addInterestButton(offer.offer)
-  console.log(offer.offer)
-  if(offer.interest != null ){
-    initiateCycle(offer)
-    return
+function Popup(offer, myOfferId) {
+  $("#model-offer-name").text(offer.offer.name);
+  $("#model-offer-details").text(offer.offer.details);
+  $("#match-found").show();
+}
+
+function item_liked(cntr) {
+  offer = Data[cntr];
+  Storage.set_interest(offer.id);
+  $("#card-" + offer.id).remove();
+  add_interest_button(offer.id);
+  if (offer.is_reference == true) {
+    initiate_cycle(offer);
+    return;
   }
-  sendInterest(offer)
+  send_interest(offer);
+}
+
+function send_interest(offer) {
+  App.contract.add_interest(offer.id,
+    App.options,
+    function(err, result) {
+      if (!err) {
+        console.log('intrest added:');
+        console.log(result);
+      } else {
+        console.log(err);
+      }
+    });
 }
 
 
-function sendInterest(offer) {
+function initiate_cycle(offer) {
+  Popup(offer);
   $.ajax({
-    url: URL+'/interest/'+offer.offer.id,
-    type: 'PUT',
-    data: JSON.stringify(offer.offer),
-    dataType: 'json',
-    contentType: 'application/json',
-    crossDomain: true,
-    success: function(result) {
-      console.log(result);
-    }
-  });
-}
-
-
-function initiateCycle(offer) {
-  Popup(offer)
-$.ajax({
-    url: URL+'/cycle',
+    url: URL + '/cycle',
     type: 'POST',
     data: JSON.stringify(offer),
     dataType: 'json',
@@ -87,40 +104,33 @@ $.ajax({
       console.log(result);
     }
   });
-
-loadOffers();
-
-
+  loadOffers();
 }
 
-
-
-
-
-function addInterestButton(offer) {
-  var intrest = '<li id="intrest-'+offer.id+'" onclick="delete_intrest(' +offer.id+ ')" class="filled" style="background-image: url('+offer['image_url']+');">+</li>';
-  $( "#my-interest" ).append(intrest);
+function add_interest_button(id) {
+  App.contract.all_goods(id,
+    App.options,
+    function(err, result) {
+      if (!err) {
+        var interest = '<li id="intrest-' + id + '" onclick="delete_intrest(' + id + ')" class="filled" style="background-image: url(' + result[5] + ');">+</li>';
+        $("#my-interest").append(interest);
+      } else {
+        console.log(err);
+      }
+    });
 }
 
 
 function loadInterests() {
-$.ajax({
-    url: URL+'/me/interests',
-    type: 'GET',
-    crossDomain: true,
-    success: function(result) {
-      if (result != null ){
-      result.forEach(addInterestButton);
-      }
-    }
-  });
+  my_interests = Storage.get_my_interests();
+  my_interests.forEach(add_interest_button);
 }
 
 
 function delete_intrest(id) {
-  $('#intrest-'+id).remove();
+  $('#intrest-' + id).remove();
   $.ajax({
-    url: URL+'/interest/'+id,
+    url: URL + '/interest/' + id,
     type: 'DELETE',
     crossDomain: true,
     success: function(result) {
@@ -129,96 +139,79 @@ function delete_intrest(id) {
   });
 }
 
+var prevOffer = null;
 
-function loadOffers() {
-  console.log(URL+"/offers")
-  $.get(URL+"/offers", function(data, status){
-        Data = data;
-        console.log(data)
-        for( cntr = 0;cntr<data.length; cntr++){
-          offer = data[cntr].offer
-          var card = '<div class="offer swiper-slide" id="card-'+offer.id+'"><div class="offer__content" style="background-image: url('+offer['image_url']+');"><div class="offer__body"><h3 class="offer__title">'+offer['name']+'-'+offer.id+'</h3><small class="offer__user">by Elit Numquam</small><p>'+offer['details']+'</p></div><div class="offer__meta"><ul><li><strong>4</strong>Likes</li><li><strong>11</strong>Trades</li><li><strong>680</strong>Respect</li></ul>'+
-          '<button class="btn-interested" data-counter="'+ cntr +'" id="'+offer["id"]+'"  onclick="item_liked('+cntr+')"><span>+</span></button>'+
-          '<button class="btn-not-interested"  data-counter="'+ cntr +'" id="'+offer["id"]+'"  onclick="item_disliked('+cntr+')"><span>&times;</span></button></div></div></div>'
-          $( ".swiper-wrapper" ).append(card);
-        }
-
-      },"json");
-}
-
-
-var prevOffer = null
 function slideChange() {
-  console.log($(".offer .swiper-slide .swiper-slide-prev"))
+  //console.log($(".offer .swiper-slide .swiper-slide-prev"));
 }
 
-function add_card(id, name, details, image_url) {
+function add_card(id, name, details, image_url, owner, is_reference, referer, referer_interest, block_number) {
   card_data = {
+    id: id,
+    owner: owner,
     name: name,
     details: details,
-    image_url: image_url
-  }
-  Data[id]=card_data;
-  var card = '<div class="offer swiper-slide" id="card-'+id+'"><div class="offer__content" style="background-image: url('+image_url+');"><div class="offer__body"><h3 class="offer__title">'+name+'-'+id+'</h3><small class="offer__user">by Elit Numquam</small><p>'+details+'</p></div><div class="offer__meta"><ul><li><strong>4</strong>Likes</li><li><strong>11</strong>Trades</li><li><strong>680</strong>Respect</li></ul>'+
-  '<button class="btn-interested" data-counter="'+ id +'" id="'+id+'"  onclick="item_liked('+id+')"><span>+</span></button>'+
-  '<button class="btn-not-interested"  data-counter="'+ id +'" id="'+id+'"  onclick="item_disliked('+id+')"><span>&times;</span></button></div></div></div>'
-  $(".swiper-wrapper").append(card);
+    image_url: image_url,
+    is_reference: is_reference,
+    referer: referer,
+    referer_interest: referer_interest,
+    block_number: block_number
+  };
+  var cntr = Data.push(card_data)-1;
+  var card = '<div class="offer swiper-slide" id="card-' + cntr + '"><div class="offer__content" style="background-image: url(' + image_url + ');"><div class="offer__body"><h3 class="offer__title">' + name + '-' + id + '</h3><small class="offer__user">by Elit Numquam</small><p>' + details + '</p></div><div class="offer__meta"><ul><li><strong>4</strong>Likes</li><li><strong>11</strong>Trades</li><li><strong>680</strong>Respect</li></ul>' +
+    '<button class="btn-interested" data-counter="' + cntr + '" id="' + id + '"  onclick="item_liked(' + cntr + ')"><span>+</span></button>' +
+    '<button class="btn-not-interested"  data-counter="' + cntr + '" id="' + id + '"  onclick="item_disliked(' + cntr + ')"><span>&times;</span></button></div></div></div>';
+  $(".swiper-wrapper").prepend(card);
 }
 
-function get_offers(id) {
-  options = {
-    from: App.address
-  }
-  App.contract.all_goods(id,
-    options,
+function add_offer(offer_id, is_reference, referer, referer_interest, block_number) {
+  App.contract.all_goods(offer_id,
+    App.options,
     function(err, result) {
-    if (!err) {
-      add_card(id, result[3], result[5], result[4]);
-    } else {
-      console.log(err);
-    }
-  });
+      if (!err) {
+        add_card(offer_id, result[3], result[5], result[4],
+          result[0], is_reference, referer, referer_interest, block_number);
+      } else {
+        console.log(err);
+      }
+    });
 }
 
 function populate_offers() {
-  options = {
-    from: App.address
-  }
   App.contract.max_all_good(
-    options,
+    App.options,
     function(err, result) {
-    if (!err) {
-      //console.log(result)
-      for(var id = 0; id<=result; id++){
-        get_offers(id);
+      if (!err) {
+        //console.log(result)
+        for (var id = 0; id <= result; id++) {
+          add_offer(id, false, null, null, null);
+        }
+      } else {
+        console.log(err);
       }
-    } else {
-      console.log(err);
-    }
-  });
+    });
 }
 
-function on_contract_loaded() {
+async function on_contract_loaded() {
   populate_offers();
+  Events.init_events();
+  loadInterests();
 }
-
 
 (function($) {
-    // Document Ready
-    $(document).ready(function() {
-      App.init(on_contract_loaded);
-      loadInterests()
+  // Document Ready
+  $(document).ready(function() {
+    App.init(on_contract_loaded);
+  });
 
-    });
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 0,
+    grabCursor: true,
+  });
 
-    var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 'auto',
-      centeredSlides: true,
-      spaceBetween: 0,
-      grabCursor: true,
-    });
-
-    swiper.on('slideChange', function () {
-      slideChange()
+  swiper.on('slideChange', function() {
+    slideChange();
   });
 })(jQuery);

@@ -1,8 +1,10 @@
 /*jshint esversion: 8 */
+// Ringeby Deployed contract address: 0x1cfC19Ff4A875CEFA55095eC3840Ba7683c1fe7c
+// default Account: 0x08427F4196800c59c925cb1D0c1BcfcB759f13C6
 
 App = {
-  account: '0x08427F4196800c59c925cb1D0c1BcfcB759f13C6',
-  address: '0x1fc3a9b1ec7fddd718ecddec6bde4dcaf1472bff',
+  account: '',
+  address: '0x70561d1ea945298fb9b12575d277c77c97eec5e9',
   contract: '',
   options: {
     from: this.account
@@ -19,6 +21,7 @@ App = {
       web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(web3Provider);
     }
+    ethereum.enable();
     return App.init_contract(run);
   },
 
@@ -33,8 +36,9 @@ App = {
     $.getJSON( "../build/contracts/givo.json", function( jsonInterface ) {
       //console.log(jsonInterface);
       App.contract = web3.eth.contract(jsonInterface.abi).at(App.address);
+      App.account = web3.eth.defaultAccount;
+      App.options.from = web3.eth.defaultAccount;
       //console.log(App.contract);
-      ethereum.enable();
       run();
     });
   },
